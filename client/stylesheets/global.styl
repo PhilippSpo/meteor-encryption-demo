@@ -1,0 +1,176 @@
+@import 'colors'
+
+normalize-base()
+normalize-html5()
+
+$gutter = 20px
+drawerWidth = 0
+
+.noscroll
+  overflow hidden
+
+.frt-fixed-content-wrapper
+  position absolute
+
+html, body, #__flow-root
+    height 100%
+    width 100%
+    background-color #edecec
+
+body
+    font-family 'Roboto', sans-serif
+    color primary-text
+    font-size 16px
+    font-weight 400
+
+
+h1, h2, h3, h4
+  font-weight 300
+
+h1
+	font-size 3em
+  margin 0.67em 0
+	line-height normal
+
+h2
+  font-size 1.4em
+  margin 1rem 0 1rem 0
+  line-height normal
+
+h3
+	font-size 1.17em
+	margin 1em 0
+	line-height normal
+
+h4
+	font-size 16px
+	line-height normal
+
+main, header, footer
+	padding-left drawerWidth
+
+.navbar-fixed nav
+	left 0
+	right 0
+	margin-left drawerWidth
+	width auto
+
+.side-nav
+    width drawerWidth
+
+main.public, header.public, footer.public
+	padding-left 0
+
++below(992px)
+    .navbar-fixed nav
+        margin-left 0
+    header, main, footer
+        padding-left 0
+
+.center-wrapper
+	center()
+
+.noPadding
+	padding-top 0 !important
+
+.main-content-wrapper
+	@css {
+		height: calc(100vh - 65px);
+	}
+	overflow auto
+	position relative
+	center()
+
+.questioning-wrapper
+	padding 10px
+	padding-top 20px
+	position absolute
+	bottom 55px
+	left 0
+	right 0
+	top 0
+	overflow auto
+
+.button-footer
+	border-top 1px solid border-color
+	position absolute
+	z-index 1
+	background white
+	padding 10px 0
+	bottom 0
+	left 0
+	right 0
+
+.nav-footer-wrapper
+	padding 0 10px
+
+*
+	-webkit-font-smoothing: antialiased
+	box-sizing border-box
+
+.navbar-fixed
+	z-index 997
+
+ul.side-nav.fixed li.menu-item
+	line-height: 44px
+
+ul.side-nav li.logo
+	padding: 0
+	a
+		color: white
+
+ul.collection
+	border: 0
+
+li.collection-item.header-item
+	border: 0
+
+ul.collection a.collection-item
+	color: rgba(0, 0, 0, 0.87)
+	&:hover
+		background: #fff !important
+
+.text-green
+	color green
+
+.text-red
+	color red
+
+
+.info
+	.row.center-wrapper
+		center(410px)
+	img
+		max-width 200px
+
+.nav-footer-wrapper
+	padding 0 10px
+
+main.landing
+	height 100vh
+	background-image url('/images/127H.jpg')
+	background-size cover
+	background-position center
+	color white
+	padding 20px
+	// margin-bottom 50px
+	display flex
+	flex-direction column
+	justify-content center
+	align-items center
+	text-align center
+
+	.landing-content
+		border-radius 5px
+		background rgba(0,0,0,0.5)
+		opacity 0.9
+		padding 20px
+		width 100%
+
+.at-error.card-panel
+    > span
+        display block
+        text-align left
+
+.main-loading
+    margin 10px

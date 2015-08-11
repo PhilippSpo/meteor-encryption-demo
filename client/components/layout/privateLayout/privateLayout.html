@@ -1,0 +1,36 @@
+<template name="privateLayout">
+
+	{{#if authInProcess}}
+		{{> loading}}
+	{{else}}
+
+		{{#if loggedIn}}
+			{{#globalLayout}}
+				<header>
+					<div class="navbar-fixed">
+						<nav>
+							<div class="nav-wrapper row">
+								<div class="col s12">
+									{{> Template.dynamic template=top}}
+								</div>
+							</div>
+						</nav>
+					</div>
+				</header>
+
+				<ul id="side-nav" class="side-nav">
+					{{#if currentUser}}
+						{{> userArea}}
+					{{/if}}
+					{{> Template.dynamic template=aside}}
+				</ul>
+
+				<main class="private">
+					{{> Template.dynamic template=main}}
+				</main>
+			{{/globalLayout}}
+		{{/if}}
+
+	{{/if}}
+
+</template>

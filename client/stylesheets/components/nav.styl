@@ -1,0 +1,89 @@
+@import '../colors'
+
+nav
+	font-size 24px
+	font-weight: 400;
+	.nav-wrapper.row
+		display flex
+		align-items center
+		> .col > *
+			display inline-block
+
+	background-color landing-color
+
+	.brand-logo
+		@media screen and (min-width: 600px) {
+			padding 0 16px
+		}
+		height 100%
+		overflow hidden
+
+.side-nav
+	font-size 14px
+	> li
+		padding 0
+
+	> .top-area
+		padding 0
+		height auto
+		background landing-color !important
+		color white
+		> *
+			padding 0 16px
+
+		> .logo-area
+			height 85px
+			display flex
+			align-items flex-end
+			.circle
+				height 65px
+				width 65px
+				background white
+				overflow hidden
+				position relative
+				.material-icons
+					position absolute
+					left 50%
+					bottom 0
+					-webkit-transform translateY(20%) translateX(-50%)
+					color secondary-text
+		> .text-area
+			display flex
+			align-items center
+
+			.primary
+				font-weight 500
+			.secondary
+				font-weight 300
+			height 56px
+
+	> .menu
+		background-color white !important
+		.divider
+			margin 0
+			height 1px
+			background rgba(0,0,0,0.12)
+		.subtitle, .list-item
+			padding 0 16px
+			height 48px
+			position relative
+
+			&:hover
+				background rgba(0,0,0,0.05)
+
+			> *
+				position absolute
+				display flex
+				align-items center
+
+			> :first-child
+				left 16
+				> i
+					font-size 24px
+					color rgba(0,0,0,0.54)
+
+			> :nth-child(2)
+				left 72px
+
+			> :last-child
+				right 16px

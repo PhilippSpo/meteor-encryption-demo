@@ -1,0 +1,147 @@
+@import '../colors'
+
+
+lifeline-width = 90px
+
+.lifeline
+    padding-top 20px
+    padding-bottom 50px
+    +below(600px)
+        padding-bottom 80px
+    .lifeline-event
+        display flex
+        > *
+            margin 5px
+        .lifeline-timeline
+            flex-shrink 0
+            position relative
+            width lifeline-width
+            display flex
+            justify-content center
+            +below(600px)
+                display none
+            &:after
+                +below(600px)
+                    display none
+                content " "
+                position absolute
+                width 1px
+                background-color color-third
+                left 50%
+                top 60px
+                bottom -10px
+            .circle-outline
+                display flex
+                align-items center
+                justify-content center
+                border 1px solid color-third
+                width 60px
+                height 60px
+                .circle
+                    color white
+                    display flex
+                    align-items center
+                    justify-content center
+                    background-color color-third
+                    width 50px
+                    height 50px
+        .lifeline-event-card
+            flex-grow 1
+            .card-header
+                &.waves-effect
+                    display block
+                > :first-child
+                    .primary-action
+                        padding-right 15px
+                        display flex
+                        align-items center
+                    display flex
+                    justify-content flex-start
+                position relative
+                padding 15px
+                background-color #f7f7f7
+                .subtitle
+                    font-size 12px
+                    color secondary-text
+                .floating-action-btn
+                    position absolute
+                    right 20px
+                    bottom -28px
+                    .file-input
+                        position absolute
+                        top 0
+                        right 0
+                        min-width 100%
+                        min-height 100%
+                        font-size 100px
+                        text-align right
+                        opacity 0
+                        outline none
+                        background white
+                        cursor inherit
+                        display block
+                .buttons
+                    position absolute
+                    top 10px
+                    right 10px
+                    .btn-icon > i
+                        color primary-text
+
+            .card-content
+                display flex
+                flex-wrap wrap
+                white-space pre-line
+                &.hidden
+                    display none
+    .origin
+        +below(600px)
+            display none
+        margin 5px
+        margin-bottom 30px
+        width lifeline-width
+        display flex
+        justify-content center
+        .circle
+            height 10px
+            width 10px
+            background-color color-third
+    .year-container
+        position relative
+        &:first-child
+            .year:after
+                top 10px
+        .year
+            position relative
+            margin 5px
+            padding-top 10px
+            padding-bottom 10px
+            width lifeline-width
+            display flex
+            justify-content center
+            +below(600px)
+                width 100%
+                margin 0
+            &:after
+                +below(600px)
+                    display none
+                content " "
+                position absolute
+                width 1px
+                background-color color-third
+                left 50%
+                top 0
+                bottom -10px
+            .label
+                z-index 1
+                background-color #f7f7f7
+                color primary-text
+                padding 5px
+                border-radius 5px
+        &:after
+            content " "
+            position absolute
+            height 1px
+            background-color border-color
+            top 50%
+            left 0
+            right 0

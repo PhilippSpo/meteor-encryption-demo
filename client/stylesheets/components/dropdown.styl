@@ -1,0 +1,25 @@
+@import '../colors'
+
+.dropdown-button:not(.btn-icon)
+  display flex
+  aligen-items center
+  cursor pointer
+  > i
+    padding-left 10px
+
+.dropdown-content
+  max-height 200px
+  border-radius 1px
+  z-index 4 !important
+  &.top-right
+    right 0 !important
+    left auto !important
+    width auto !important
+
+  li
+    padding 0
+    font-weight 400
+    > *, a, span
+      line-height 64px
+      color primary-text
+      padding 0 1rem

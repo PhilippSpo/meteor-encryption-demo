@@ -1,0 +1,32 @@
+<template name="publicLayout">
+
+	<main class="public">
+		<div class="landing">
+			<div>
+				<div class="landing-content">
+					<div>
+						{{#if authInProcess}}
+							{{> loading}}
+						{{else}}
+							{{#unless loggedIn}}
+								<h1>Meteor Encryption Demo</h1>
+								<h4>Sign up/in to test it :)</h4>
+								<h4>
+									(You might want to go with a "junk" email
+									address, since the one you enter here will
+									be visible public to all other users)
+								</h4>
+								{{> atPwdForm}}
+							{{else}}
+								Generating / loading your RSA key...
+								{{> loading}}
+							{{/unless}}
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			{{>publicFooter}}
+		</div>
+	</main>
+
+</template>

@@ -1,0 +1,34 @@
+@import "../colors"
+
+link-color = divider
+
+.tree
+	position relative
+	margin 20px
+	.cell
+		position absolute
+		width 200px
+	.line
+		position absolute
+		&.line-to-children
+			top 50%
+			bottom -6px
+			right -25px
+			width 1px
+			background-color link-color
+		&.line-to-spouse
+			top 50%
+			height 1px
+			right -50px
+			width 50px
+			background-color link-color
+		&.line-to-parent-vertical
+			top -20px
+			width 1px
+			right 98px
+			height 27px
+			background-color link-color
+		&.line-to-parent-horizontal
+			top -20px
+			height 1px
+			background-color link-color

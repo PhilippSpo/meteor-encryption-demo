@@ -1,0 +1,211 @@
+@import '../colors'
+/* --------------------------------
+
+Main Components
+
+-------------------------------- */
+.cd-header {
+  height: 100px;
+  position: relative;
+}
+.cd-header h1 {
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 2.2rem;
+}
+
+.no-js .cd-pricing-switcher {
+  display: none;
+}
+
+.cd-pricing-list
+  margin 2em 0 0 0
+
+.cd-pricing-list > div
+  position: relative
+  margin-bottom: 1em
+  list-style: none
+  width 100%
+  +above(992px)
+    marigin: 0
+    padding: 0
+
+.cd-pricing-list > ul
+  +above(992px)
+    margin: 0
+    padding: 0
+
+.cd-pricing-wrapper > li {
+  background-color: #FFFFFF;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Firefox bug - 3D CSS transform, jagged edges */
+  outline: 1px solid transparent;
+}
+.cd-pricing-wrapper > li.is-ended::after {
+  display: none;
+}
+
+.cd-pricing-container
+  ul
+    margin-top 0
+    padding-top 0
+
+.cd-pricing-header {
+  position: relative;
+  z-index: 1;
+  height: 80px;
+  padding: 0 10px;
+  pointer-events: none;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content center
+  font-size: 25px;
+}
+.cd-popular .cd-pricing-header {
+  background-color: landing-color;
+}
+
+
+.cd-currency, .cd-value {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.cd-duration {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #8dc8e4;
+  text-transform: uppercase;
+}
+.cd-popular .cd-duration {
+  color: #f3b6ab;
+}
+.cd-duration::before {
+  content: '/';
+  margin-right: 2px;
+}
+
+.cd-pricing-body
+  overflow-x: auto
+  -webkit-overflow-scrolling: touch
+  border: 1px solid #e0e0e0
+
+  .collection
+    margin 0
+
+
+row-height = 80px
+
+.col:not(:last-child)
+  .cd-pricing-body, footer
+    +above(992px)
+      border-right-style: none
+
+.cd-pricing-body .collection-item
+  display: flex
+  padding 5px
+
+.cd-pricing-body .collection-item > :last-child
+  text-align: right
+  width: 100px
+  display flex
+  align-items center
+  justify-content flex-end
+  +above(992px)
+    justify-content center
+    height row-height
+    width: 100%
+
+.cd-pricing-body .collection-item > :first-child
+  flex-grow: 1
+  +above(992px)
+    display: none
+
+.cd-pricing-feature-list .cd-pricing-body .collection-item > :first-child
+  text-align: left
+  height: row-height
+  display flex
+  align-items center
+  justify-content flex-start
+
+.cd-pricing-feature-list
+  .cd-pricing-body
+    border-right-style: none
+    margin-top 80px
+
+  .cd-pricing-footer
+    border-right-style: none
+
+.cd-pricing-feature-list
+  display: none
+  +above(992px)
+    display: block
+  > .col
+    padding 0
+
+.cd-pricing-list
+  > .col
+    padding 0
+
+.is-switched .cd-pricing-body {
+  /* fix a bug on Chrome Android */
+  overflow: hidden;
+}
+
+
+.cd-pricing-features {
+  width: 600px;
+}
+.cd-pricing-features:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cd-pricing-features li {
+  width: 100px;
+  float: left;
+  padding: 1.6em 1em;
+  font-size: 1.4rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cd-pricing-features em {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.cd-pricing-footer
+  padding-left 0
+  z-index: 1
+  /* on mobile it covers the .cd-pricing-header */
+  height: 80px
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  border solid 1px #e0e0e0
+  border-top 0
+
+.cd-select {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  /* hide button text on mobile */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+}
+
+.cd-pricing-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

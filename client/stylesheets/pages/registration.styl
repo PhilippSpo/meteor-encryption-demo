@@ -1,0 +1,158 @@
+@import '../colors'
+
+.registration-wrapper
+    +above(620px)
+      background-image url('/6H-min_mini.jpg')
+      background-size cover
+      background-position center
+  overflow-y auto
+  -webkit-overflow-scrolling touch
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+header.registration
+  height 80px
+  display flex
+  align-items center
+  padding-left 16px
+  color white
+  font-size 25px
+  font-weight 100
+  background-color landing-color-footer
+  +below(620px)
+    background-color landing-color
+
+main.registration
+  font-weight 300
+  background-color: rgba(0,0,0,0.5);
+  display flex
+  justify-content center
+  +below(620px)
+    min-height 70vh
+
+  +above(620px)
+    padding 20px 0
+
+  .registration-container
+    +below(620px)
+      width 100%
+      background-color white
+    +above(620px)
+      min-height 80vh
+      width 600px
+    +above(992px)
+      width 992px
+    +above(1020px)
+      width 1000px
+
+    .wizard
+      position relative
+      +below(620px)
+        padding 10px
+      .row
+        margin-bottom 0
+      .tabs .tab a
+        color landing-color
+        +below(620px)
+          font-size 14px
+      .tabs .indicator
+        background-color landing-color-footer
+      .switch
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        label
+          +below(620px)
+            font-size 14px
+      +above(620px)
+        background-color white
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+      .payment
+        .row, .col
+          padding 0
+        .col+.col:not(.tab)
+          padding-left 5px
+
+      .button-row
+        padding-top 16px
+        display flex
+        height 65px
+
+        &:before
+          content ''
+          position absolute
+          bottom 85px
+          left 0
+          right 0
+          height 1px
+          background border-color
+
+        +below(620px)
+          padding-top 8px
+          height 114px
+          flex-direction column
+          &:before
+            bottom 124px
+          > div
+            display flex
+            flex-direction column
+            .btn, .btn-flat
+              text-align center
+              margin-top 8px
+              width 100%
+        +above(620px)
+          :first-child
+            flex-grow 1
+
+      .wizard-content
+        width 100%
+
+      .steps
+        display none
+        margin-bottom 10px
+
+      h2
+        color landing-color
+        margin-top 0
+
+      h4
+        color landing-color
+
+      .divider
+        margin-right -20px
+        margin-left 0
+
+      .detail-list
+        .divider
+          height 0
+
+
+main.registration + footer
+  +above(620px)
+    width 100%
+
+.cd-pricing-header
+  background-color landing-color-footer
+
+.at-pwd-form
+  text-align left
+  input + label
+    color white
+    &:before
+      border 2px solid #9E9E9E
+  .at-btn.submit
+    margin-top 10px
+
+.verification
+  font-weight 300
+  .button-row
+    margin-top 40px
+  .input-field label
+    color primary-text

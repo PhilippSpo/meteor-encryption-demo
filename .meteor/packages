@@ -1,0 +1,24 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+reactive-var
+stolinski:stylus-multi
+accounts-password
+kadira:flow-router
+kadira:blaze-layout
+arillo:flow-router-helpers
+materialize:materialize
+useraccounts:materialize
+useraccounts:flow-routing
+
+# autoform
+aldeed:autoform
+gildaspk:autoform-materialize
+aldeed:collection2
+
+# security
+ongoworks:security

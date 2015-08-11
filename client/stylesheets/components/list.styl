@@ -1,0 +1,56 @@
+@import '../colors'
+
+.divider
+	margin-left 16px
+
+.list > :last-child
+	margin-bottom 72px
+
+.list-item
+	padding 0 16px
+	position relative
+	color #4D4D4E
+	height 72px
+	line-height 72px
+	font-weight 400
+	&.active
+		background rgba(0,0,0,0.05)
+	&.disabled, &.disabled > :first-child > i
+		color divider
+
+	&.list-item-with-secondary-action > *
+		right 56px
+
+	> *
+		position absolute
+		top 0
+		bottom 0
+		left 0
+		right 0
+		display flex
+		align-items center
+
+	> :first-child
+		left 16px
+		> i
+			font-size 24px
+			color rgba(0,0,0,0.54)
+
+	> :nth-child(2)
+		left 72px
+
+	> :last-child
+		right 16px
+		left auto
+
+	> .secondary-action
+		left auto
+		width 40px
+
+
+.list-heading
+	padding 0 16px
+	height 32px
+	line-height 32px
+	font-size 12px
+	color #999999

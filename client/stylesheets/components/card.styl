@@ -1,0 +1,85 @@
+@import '../colors'
+
+.blue-card
+  background-color #1EBCD2
+
+.green-card
+  background-color #89BD50
+
+.orange-card
+  background-color #ff9800
+
+.gray-card
+  background-color #607d8b
+
+.file-card
+    position relative
+    width 100%
+
+    &:before
+        content ""
+        display block
+        padding-top 100% 	/* initial ratio of 1:1*/
+
+    .card-image
+        position absolute
+        top 0
+        left 0
+        bottom 58px
+        right 0
+        display flex
+        align-items center
+        justify-content center
+
+        .card-title
+            font-size 15px
+            padding 0 10px
+            color primary-text
+            left 0
+            right 0
+            &.card-status
+                text-align center
+                color secondary-text
+        img
+            max-height 80%
+            max-width 80%
+
+    .card-content
+        padding 5px
+        .card-action
+            padding 5px
+            display flex
+            justify-content center
+            .btn-icon > i
+                color primary-text
+
+.card.dashboard-card
+    display block
+    position relative
+    .card-image
+        position absolute
+        left 0
+        top 0
+        right 0
+        height 100%
+    .bottom-action-bar
+        z-index 2
+        background-color rgba(255,255,255,0.7)
+        position absolute
+        bottom 0
+        left 0
+        right 0
+        height 75px
+        .btn-icon > i
+            color primary-text
+        > *
+            position absolute
+            height 100%
+            display flex
+            align-items center
+            padding 0 5px
+        > :first-child
+            left 0
+            right 50px
+        > :last-child
+            right 0

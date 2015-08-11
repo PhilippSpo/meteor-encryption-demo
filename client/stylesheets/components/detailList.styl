@@ -1,0 +1,52 @@
+.detail-list
+  .divider
+    margin-left 16px
+
+  .list-item
+    padding 0 16px
+    position relative
+    color #4D4D4E
+    height 72px
+    line-height 72px
+    font-weight 400
+
+    &:hover
+      // background rgba(0,0,0,0.05)
+
+    &.list-item-with-secondary-action > *
+      right 56px
+
+    > *
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      right 0
+      display flex
+      align-items center
+
+      &.two-lines
+        flex-direction column
+        justify-content center
+        align-items flex-start
+        line-height normal
+        >.secondary
+          font-weight 300
+          font-size 14px
+          color secondary-text
+
+    > :first-child
+      left 16px
+      > i
+        font-size 24px
+        color rgba(0,0,0,0.54)
+
+    > :nth-child(2)
+      left 72px
+
+    > :last-child
+      right 16px
+
+    > .secondary-action
+      left auto
+      width 40px

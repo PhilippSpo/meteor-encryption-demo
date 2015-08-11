@@ -1,0 +1,20 @@
+@import '../colors'
+.picker__date-display
+  background-color landing-color
+
+.picker__weekday-display
+  background-color rgba(0,0,0,0.3)
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected
+  background-color landing-color
+
+.picker__holder
+    display flex
+    justify-content center
+    align-items center
+    .picker__frame
+        width 320px
+        position static
+        top auto
+        max-height 100%
+        height auto

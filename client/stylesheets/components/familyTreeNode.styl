@@ -1,0 +1,36 @@
+@import "../colors"
+
+.family-tree-node
+  position relative
+  width 200px
+  height 175px
+  .card-content
+    padding 5px 20px
+  .add-button
+    display none
+    background-color white
+    border-radius 50%
+  &:hover .add-button
+    display block
+  .add-parent-button
+    position absolute
+    left 100px - 18px
+    top - 18px
+  .add-children-button
+    position absolute
+    left 100px - 18px
+    bottom - 18px
+  .add-spouse-button
+    position absolute
+    right - 18px
+    top calc(175px/2 - 18px)
+  .bottom-action-bar
+    padding 5px
+    position absolute
+    bottom 0px
+    right 0px
+    div
+      display flex
+      justify-content flex-end
+      .btn-icon > i
+        color primary-text
