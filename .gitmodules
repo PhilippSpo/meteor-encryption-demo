@@ -1,0 +1,3 @@
+[submodule "packages/encryption"]
+	path = packages/encryption
+	url = git@github.com:Planifica/encryption.git

@@ -5,11 +5,16 @@ Template.publicLayout.helpers({
   loggedIn: function() {
     var loggedIn = !!Meteor.user();
     if(loggedIn) {
-        // render private layout
-        BlazeLayout.render('privateLayout', {
-            top: 'homeToolbar',
-            main: 'home',
-            aside: 'menu'
+        Tracker.autorun(function() {
+            var privateKey = Session.get('privateKey');
+            if(privateKey){
+                // render private layout
+                BlazeLayout.render('privateLayout', {
+                    top: 'homeToolbar',
+                    main: 'home',
+                    aside: 'menu'
+                });
+            }
         });
     }
     return loggedIn;

@@ -5,13 +5,18 @@
 # but you can also edit it by hand.
 
 meteor-platform
+
 reactive-var
+
 stolinski:stylus-multi
-accounts-password
+
 kadira:flow-router
 kadira:blaze-layout
 arillo:flow-router-helpers
+
 materialize:materialize
+
+accounts-password
 useraccounts:materialize
 useraccounts:flow-routing
 
@@ -22,3 +27,6 @@ aldeed:collection2
 
 # security
 ongoworks:security
+
+# encryption
+planifica:encryption
