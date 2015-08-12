@@ -19,6 +19,7 @@ materialize:materialize
 accounts-password
 useraccounts:materialize
 useraccounts:flow-routing
+aldeed:template-extension
 
 # autoform
 aldeed:autoform

@@ -1,8 +1,6 @@
 <template name="privateLayout">
 
-	{{#if authInProcess}}
-		{{> loading}}
-	{{else}}
+	{{#privateMode}}
 
 		{{#if loggedIn}}
 			{{#globalLayout}}
@@ -31,6 +29,7 @@
 			{{/globalLayout}}
 		{{/if}}
 
-	{{/if}}
+
+	{{/privateMode}}
 
 </template>

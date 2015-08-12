@@ -1,0 +1,11 @@
+<template name="privateMode">
+  {{#if authInProcess}}
+    {{> loading}}
+  {{else}}
+    {{#if canShow}}
+      {{> UI.contentBlock }}
+    {{else}}
+      {{> publicLayout main="fullPageAtForm"}}
+    {{/if}}
+  {{/if}}
+</template>
