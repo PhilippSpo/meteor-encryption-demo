@@ -1,9 +1,12 @@
 <template name="home">
-Here is the full list of registered users that you can chat with.
-<div class="collection">
-  {{#each users}}
-      <a href="chat/{{_id}}" class="collection-item">{{email}}</a>
-  {{/each}}
-</div>
+    <div class="row">
+      {{#each users}}
+          <div class="list-item">
+              <div><img src="{{gravatar}}" class="circle"></div>
+              <div>{{email}}</div>
+              <div></div>
+          </div>
+      {{/each}}
+    </div>
 
 </template>
