@@ -1,51 +1,30 @@
 <template name="chat">
-  <div class="row">
-    <ul class="collection">
-      <li class="collection-item avatar myMessage">
-        <img class="circle" src="http://lorempixel.com/output/people-q-c-96-96-9.jpg" />
-        <span class="title name">lukas.sporrer@softbricks.de</span>
-        <p>
-          lorem ipsum doler amet
-        </p>
-        <span class="secondary-content">10:23</span>
-      </li>
-      <li class="collection-item avatar theirMessage">
-          <img class="circle" src="http://lorempixel.com/output/people-q-c-96-96-6.jpg" />
-          <span class="title name">philipp.sporrer@softbricks.de</span>
-          <p>
-            lorem ipsum doler amet
-          </p>
-          <span class="secondary-content">10:25</span>
-      </li>
-      <li class="collection-item avatar myMessage">
-        <img class="circle" src="http://lorempixel.com/output/people-q-c-96-96-9.jpg" />
-        <span class="title name">lukas.sporrer@softbricks.de</span>
-        <p>
-          lorem ipsum doler amet asdfasdf  aasdfasdf asff asddf    asdf asdf asd  asdf asd f
-          asdfasdf asdf asdf asdf asdf   a sdf gafd gsdfasdf  asdfdasdf
-        </p>
-        <span class="secondary-content">10:29</span>
-      </li>
-      <li class="collection-item avatar theirMessage">
-          <img class="circle" src="http://lorempixel.com/output/people-q-c-96-96-6.jpg" />
-          <span class="title name">philipp.sporrer@softbricks.de</span>
-          <p>
-            lorem ipsum doler amet asd fasdfas df as d f as df as df  as   a sdfasdfasdf
-            asdfasdf   asdfasdfasdf afsasdf asdffasdf asdfasdf
-          </p>
-          <span class="secondary-content">10:31</span>
-      </li>
-    </ul>
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s11">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Message</label>
-        </div>
-        <div class="col s1">
-          <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">navigation</i></a>
-        </div>
-      </div>
-    </form>
-  </div>
+    <div class="row">
+        <ul class="collection">
+            {{#each messages}}
+                <li class="collection-item avatar myMessage">
+                    <img class="circle" src="{{gravatar}}" />
+                    <span class="title name">{{email}}</span>
+                    <p>
+                        {{message}}
+                    </p>
+                    <span class="secondary-content">{{date}}</span>
+                </li>
+            {{/each}}
+        </ul>
+
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s11">
+                    <textarea id="message" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Message</label>
+                </div>
+                <div class="col s1">
+                    <a class="btn-floating btn-large waves-effect waves-light">
+                        <i class="material-icons">send</i>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 </template>

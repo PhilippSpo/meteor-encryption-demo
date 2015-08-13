@@ -13,6 +13,7 @@ stolinski:stylus-multi
 kadira:flow-router
 kadira:blaze-layout
 arillo:flow-router-helpers
+meteorhacks:subs-manager
 
 materialize:materialize
 
@@ -34,3 +35,6 @@ planifica:encryption
 
 # gravatar
 jparker:gravatar
+
+# dev
+msavin:mongol
