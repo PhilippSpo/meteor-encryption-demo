@@ -45,6 +45,7 @@ kadira:blaze-layout@2.0.0
 kadira:flow-router@2.1.1
 lai:collection-extensions@0.1.4
 launch-screen@1.0.2
+lbee:moment-helpers@1.1.0
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7

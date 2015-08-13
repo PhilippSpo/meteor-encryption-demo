@@ -1,34 +1,35 @@
 <template name="chat">
-    <div class="row">
-        {{#if ready}}
-            <ul class="collection">
-                {{#each messages}}
-                    <li class="collection-item avatar myMessage">
-                        <img class="circle" src="{{gravatar}}" />
-                        <span class="title name">{{email}}</span>
-                        <p>
-                            {{message}}
-                        </p>
-                        <span class="secondary-content">{{date}}</span>
-                    </li>
-                {{/each}}
-            </ul>
-        {{else}}
-            <div class="main-loading">
-                {{>loading}}
-            </div>
-        {{/if}}
-
-        <form class="col s12">
+    <div class="chat">
+        <div class="row messages">
+            {{#if ready}}
+                <ul class="collection">
+                    {{#each messages}}
+                        <li class="collection-item avatar myMessage">
+                            <img class="circle" src="{{gravatar}}" />
+                            <span class="title name">{{email}}</span>
+                            <p>
+                                {{message}}
+                            </p>
+                            <span class="secondary-content">{{moFormat date 'HH:mm:ss'}}</span>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <div class="main-loading">
+                    {{>loading}}
+                </div>
+            {{/if}}
+        </div>
+        <form class="col s12 chat-form z-depth-1">
             <div class="row">
                 <div class="input-field col s11">
                     <textarea id="message" class="materialize-textarea"></textarea>
                     <label for="textarea1">Message</label>
                 </div>
                 <div class="col s1">
-                    <a class="btn-floating btn-large waves-effect waves-light">
+                    <button type="submit" class="btn-floating btn-large waves-effect waves-light">
                         <i class="material-icons">send</i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </form>

@@ -41,12 +41,17 @@ Template.chat.helpers({
 });
 
 Template.chat.events({
-    'click .btn-floating': function () {
+    'submit form': function (e) {
+        e.preventDefault();
         var message = $('#message').val();
+        // check if there is a message
         if (!message) {
-            console.warn('no message given');
+            Materialize.toast('Please provide a message', 2000);
+            return;
         }
+        // get the partner
         var partnerId = FlowRouter.getParam('chatPartnerId');
+        // send the message
         Messages.insert({
             chatPartner: partnerId,
             // this will be validated by the server
@@ -55,5 +60,20 @@ Template.chat.events({
             date: new Date(),
             message: message
         });
+        // clear message
+        $('#message').val('');
+    },
+    'keyup #message': function(e, tmplInst) {
+        console.log(e.which)
+        if(e.which === 13 || e.which === 8) {
+            // enter was pressed -> we need to increase the hight
+            var messagesContainer = $(tmplInst.find('.messages'));
+            var form = $(tmplInst.find('.chat-form'));
+            var message = $(tmplInst.find('#message'));
+            var scrollheight = message.outerHeight()+60;
+            console.log(scrollheight);
+            form.css('height', scrollheight + 'px');
+            messagesContainer.css('bottom', scrollheight + 'px');
+        }
     }
 });
