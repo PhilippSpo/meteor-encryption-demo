@@ -1,13 +1,13 @@
 var MessagesSubs = new SubsManager();
 Template.chat.onCreated(function () {
     var self = this;
-
     // Subscription
     self.ready = new ReactiveVar();
     var partnerId = FlowRouter.getParam('chatPartnerId');
     self.autorun(function () {
         var handle = MessagesSubs.subscribe(
             'messages', partnerId);
+        MessagesSubs.subscribe('principals');
         self.ready.set(handle.ready());
     });
 });
@@ -37,6 +37,9 @@ Template.chat.helpers({
     },
     messages: function () {
         return Messages.find();
+    },
+    messageObj: function () {
+        return Messages.findOne({_id: this._id});
     }
 });
 
@@ -64,7 +67,6 @@ Template.chat.events({
         $('#message').val('');
     },
     'keyup #message': function(e, tmplInst) {
-        console.log(e.which)
         if(e.which === 13 || e.which === 8) {
             // enter was pressed -> we need to increase the hight
             var messagesContainer = $(tmplInst.find('.messages'));

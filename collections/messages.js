@@ -19,8 +19,15 @@ MessagesSchema = new SimpleSchema({
         type: String,
         label: "Message",
         max: 1000
+    },
+    encrypted: {
+        type: Boolean,
+        defaultValue: false
     }
 });
+
+Messages.attachSchema(MessagesSchema);
+
 if (Meteor.isClient) {
     // define fields to be encrypted
     var fields = ['message'];
