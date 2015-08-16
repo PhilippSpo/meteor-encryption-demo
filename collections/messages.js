@@ -26,6 +26,11 @@ MessagesSchema = new SimpleSchema({
     }
 });
 
+Messages.before.insert(function(userId, doc) {
+    doc.date = new Date();
+    doc.author = userId;
+});
+
 Messages.attachSchema(MessagesSchema);
 
 if (Meteor.isClient) {
