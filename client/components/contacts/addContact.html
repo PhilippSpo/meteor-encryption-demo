@@ -1,0 +1,16 @@
+<template name="addContact">
+    <div class="modal-content">
+        <h2>Add contact</h2>
+        <div>
+            {{#each users}}
+                {{> addContactItem}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="submit" class="btn-flat on-white waves-effect">
+            OK
+        </button> -->
+        {{> dialogAbortButton text="OK"}}
+    </div>
+</template>

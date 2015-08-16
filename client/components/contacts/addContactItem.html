@@ -1,0 +1,13 @@
+<template name="addContactItem">
+    <div class="list-item with-divider">
+        <div><img src="{{gravatar}}" class="circle"></div>
+        <div>{{email}}</div>
+        <div>
+            {{#unless requested}}
+            <div id="addContact" class="waves-effect btn-icon">
+                <i class="material-icons">person_add</i>
+            </div>
+            {{/unless}}
+        </div>
+    </div>
+</template>

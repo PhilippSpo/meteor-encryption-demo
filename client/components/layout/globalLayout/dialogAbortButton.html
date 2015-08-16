@@ -1,5 +1,5 @@
 <template name="dialogAbortButton">
     <button id="abortDialog" class="btn-flat on-white waves-effect">
-        {{_ 'abort'}}
+        {{#if text}}{{text}}{{else}}abort{{/if}}
     </button>
 </template>

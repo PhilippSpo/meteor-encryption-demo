@@ -1,0 +1,10 @@
+<template name="activeChats">
+    <!-- this shows all users that you have a active chat with and the last message -->
+    {{#if ready}}
+        {{> userList}}
+    {{else}}
+        <div class="main-loading">
+            {{> loading size="small"}}
+        </div>
+    {{/if}}
+</template>

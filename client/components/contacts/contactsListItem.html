@@ -1,0 +1,11 @@
+<template name="contactsListItem">
+    <div class="list-item with-divider">
+        <div><img src="{{gravatar}}" class="circle"></div>
+        <div>{{email}}</div>
+        <div>
+            <div id="removeContact" class="waves-effect btn-icon" data-open-dialog data-template="removeContact">
+                <i class="material-icons">delete</i>
+            </div>
+        </div>
+    </div>
+</template>

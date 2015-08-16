@@ -1,0 +1,19 @@
+<template name="contacts">
+    <!-- this should show a list of your contacts/friends -->
+    <!-- new contacts can be added via the add contact button in the upper rigth corner -->
+    <!-- friend requests are shown at the top in a separate list -->
+    {{#if ready}}
+        {{#each friendRequests}}
+            <div class="list-heading">Freind Requests</div>
+            {{>friendRequestItem}}
+        {{/each}}
+        <div class="list-heading">Contacts</div>
+        {{#each contacts}}
+            {{> contactsListItem}}
+        {{/each}}
+    {{else}}
+        <div class="main-loading">
+            {{> loading size="small"}}
+        </div>
+    {{/if}}
+</template>
