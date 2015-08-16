@@ -5,14 +5,7 @@
                 <ul class="collection">
                     {{#each messages}}
                         {{#with messageObj}}
-                            <li class="collection-item avatar myMessage">
-                                <img class="circle" src="{{gravatar}}" />
-                                <span class="title name">{{email}}</span>
-                                <p>
-                                    {{message}}
-                                </p>
-                                <span class="secondary-content">{{moFormat date 'HH:mm:ss'}}</span>
-                            </li>
+                            {{> message}}
                         {{/with}}
                     {{/each}}
                 </ul>
