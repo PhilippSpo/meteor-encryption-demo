@@ -59,7 +59,7 @@ Template.chat.events({
             chatPartner: partnerId,
             // this will be validated by the server
             author: Meteor.userId(),
-            // this also should be validated by the server
+            // this is should validated by the server
             date: new Date(),
             message: message
         });
@@ -69,11 +69,11 @@ Template.chat.events({
     'keyup #message': function(e, tmplInst) {
         if(e.which === 13 || e.which === 8) {
             // enter was pressed -> we need to increase the hight
+            // backspace was pressed -> we potentially decrease the hight
             var messagesContainer = $(tmplInst.find('.messages'));
             var form = $(tmplInst.find('.chat-form'));
             var message = $(tmplInst.find('#message'));
             var scrollheight = message.outerHeight()+60;
-            console.log(scrollheight);
             form.css('height', scrollheight + 'px');
             messagesContainer.css('bottom', scrollheight + 'px');
         }

@@ -26,11 +26,18 @@
         bottom 0
         overflow-y hidden
         transition height 0.1s ease
-        > .row
-            margin 0 5px
+        > *
+            position absolute
+            top 0
+            bottom 0
             display flex
             align-items center
-            > .input-field
-                margin-top: 2rem;
-                // margin 0
-                // padding 0
+            justify-content center
+        > .input-field
+            left 0
+            right 70px
+            margin-top: 2rem;
+            padding 0 10px
+        > :last-child
+            right 0
+            width 70px
