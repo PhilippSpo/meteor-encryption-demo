@@ -13,6 +13,14 @@
 	height 72px
 	line-height 72px
 	font-weight 400
+	&.with-divider:after
+		content ''
+		position absolute
+		bottom 0
+		right 0
+		height 1px
+		left 72px
+		background divider
 	&.active
 		background rgba(0,0,0,0.05)
 	&.disabled, &.disabled > :first-child > i
@@ -32,6 +40,8 @@
 
 	> :first-child
 		left 16px
+		> .circle
+			height 45px
 		> i
 			font-size 24px
 			color rgba(0,0,0,0.54)
@@ -54,3 +64,14 @@
 	line-height 32px
 	font-size 12px
 	color #999999
+
+.collection .collection-item
+	border 0
+	&:after
+		content ''
+		position absolute
+		bottom 0
+		right 0
+		height 1px
+		left 72px
+		background divider

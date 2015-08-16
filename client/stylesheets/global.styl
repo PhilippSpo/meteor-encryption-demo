@@ -12,10 +12,10 @@ drawerWidth = 0
 .frt-fixed-content-wrapper
   position absolute
 
-html, body, #__flow-root
+html, body, #__blaze-root
     height 100%
     width 100%
-    background-color #edecec
+    background-color white
 
 body
     font-family 'Roboto', sans-serif
@@ -60,6 +60,9 @@ main, header, footer
 
 main.public, header.public, footer.public
 	padding-left 0
+
+main.private
+    height calc(100vh - 65px)
 
 +below(992px)
     .navbar-fixed nav

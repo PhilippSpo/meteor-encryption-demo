@@ -13,6 +13,7 @@ stolinski:stylus-multi
 kadira:flow-router
 kadira:blaze-layout
 arillo:flow-router-helpers
+meteorhacks:subs-manager
 
 materialize:materialize
 
@@ -31,3 +32,16 @@ ongoworks:security
 
 # encryption
 planifica:encryption
+
+# gravatar
+jparker:gravatar
+
+# dev
+msavin:mongol
+
+# jquery
+jquery
+
+# moment
+lbee:moment-helpers
+momentjs:moment

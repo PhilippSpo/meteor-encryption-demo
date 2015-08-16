@@ -1,0 +1,17 @@
+<template name="userList">
+    {{#if ready}}
+        <div class="row">
+          {{#each users}}
+              <div class="list-item with-divider">
+                  <div><img src="{{gravatar}}" class="circle"></div>
+                  <div>{{email}}</div>
+                  <div></div>
+              </div>
+          {{/each}}
+        </div>
+    {{else}}
+        <div class="main-loading">
+            {{> loading size="small"}}
+        </div>
+    {{/if}}
+</template>

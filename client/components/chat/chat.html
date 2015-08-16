@@ -1,0 +1,30 @@
+<template name="chat">
+    <div class="chat">
+        <div class="row messages">
+            {{#if ready}}
+                <ul class="collection">
+                    {{#each messages}}
+                        {{#with messageObj}}
+                            {{> message}}
+                        {{/with}}
+                    {{/each}}
+                </ul>
+            {{else}}
+                <div class="main-loading">
+                    {{>loading}}
+                </div>
+            {{/if}}
+        </div>
+        <form class="col s12 chat-form z-depth-1">
+            <div class="input-field">
+                <textarea id="message" class="materialize-textarea"></textarea>
+                <label for="textarea1">Message</label>
+            </div>
+            <div>
+                <button type="submit" class="btn-floating btn-large waves-effect waves-light">
+                    <i class="material-icons">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</template>

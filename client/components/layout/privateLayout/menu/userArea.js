@@ -13,7 +13,14 @@ Template.userArea.helpers({
     userEmail: function () {
         return Meteor.user().emails[0].address;
     },
-    gravatar: function () {},
+    gravatar: function () {
+        var user = Meteor.user();
+        var options = {
+            secure: true
+        };
+        var md5Hash = Gravatar.hash(user.emails[0].address);
+        return Gravatar.imageUrl(md5Hash, options);
+    }
 });
 
 Template.userArea.events({
