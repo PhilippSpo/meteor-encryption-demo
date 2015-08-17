@@ -1,6 +1,8 @@
 Meteor.publish('messages', function (partnerId) {
     if (!partnerId) {
-        return;
+        return Messages.find({
+            author: this.userId
+        });
     }
     return [
         Messages.find({

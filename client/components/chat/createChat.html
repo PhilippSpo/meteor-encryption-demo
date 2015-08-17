@@ -1,0 +1,26 @@
+<template name="createChat">
+    <div class="modal-content">
+        <h2>Select a contact you want to chat with</h2>
+        {{#if ready}}
+            {{#each contacts}}
+                {{>addContactToChatItem}}
+            {{/each}}
+        {{else}}
+            <div class="main-loading">
+                {{> loading size="small"}}
+            </div>
+        {{/if}}
+    </div>
+    <div class="modal-footer">
+        {{> dialogAbortButton text="abort"}}
+    </div>
+</template>
+
+<template name="addContactToChatItem">
+    <div class="list-item with-divider">
+        <div><img src="{{gravatar}}" class="circle"></div>
+        <div>{{email}}</div>
+        <div>
+        </div>
+    </div>
+</template>

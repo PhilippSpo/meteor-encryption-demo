@@ -1,10 +1,40 @@
 <template name="activeChats">
     <!-- this shows all users that you have a active chat with and the last message -->
     {{#if ready}}
-        {{> userList}}
+        {{#if activeChats}}
+            <div class="list-heading">Active chats</div>
+            {{#each activeChats}}
+                {{#with message}}
+                    {{> activeChatsListItem}}
+                {{/with}}
+            {{/each}}
+        {{else}}
+            <div class="no-content">
+                No Messages yet? Start chatting with one of your contacts by clicking the button in the lower right corner.
+            </div>
+        {{/if}}
     {{else}}
         <div class="main-loading">
             {{> loading size="small"}}
         </div>
     {{/if}}
+    <div class="fixed-action-btn">
+        <div class="btn-floating btn-large waves-effect" data-open-dialog data-template="createChat" data-fixedfooter="true">
+            <i class="material-icons">chat</i>
+        </div>
+    </div>
+</template>
+
+<template name="activeChatsListItem">
+    <div class="list-item with-divider">
+        <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
+        <div>
+            <div>
+                <div>{{#with user}}{{email}}{{/with}}</div>
+                <div class="truncate secondary">{{message}}</div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
 </template>

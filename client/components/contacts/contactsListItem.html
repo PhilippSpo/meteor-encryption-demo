@@ -4,7 +4,7 @@
         <div>{{email}}</div>
         <div>
             <div id="removeContact" class="waves-effect btn-icon" data-open-dialog data-template="removeContact">
-                <i class="material-icons">delete</i>
+                <i class="material-icons">{{#if icon}}{{icon}}{{else}}delete{{/if}}</i>
             </div>
         </div>
     </div>
