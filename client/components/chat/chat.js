@@ -17,7 +17,8 @@ Template.chat.helpers({
         return Template.instance().ready.get();
     },
     messages: function () {
-        return Messages.find();
+        var partnerId = FlowRouter.getParam('chatPartnerId');
+        return Messages.find({chatPartner: partnerId});
         // var messages = Messages.find().fetch();
         // var messagesToRemove = [];
         // // iterate over messages and find consecutive messages that were written within 5 minutes which can be joined
