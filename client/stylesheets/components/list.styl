@@ -13,6 +13,8 @@
 	height 72px
 	line-height 72px
 	font-weight 400
+	&.clickable
+		cursor pointer
 	&.with-divider:after
 		content ''
 		position absolute
@@ -51,12 +53,14 @@
 		left 16px
 		> .circle
 			height 45px
+			width 45px
+			background-color rgba(0,0,0,0.3)
 		> i
 			font-size 24px
 			color rgba(0,0,0,0.54)
 
 	> :nth-child(2)
-		left 72px
+		left 72px !important
 		right 72px
 
 	> :last-child
