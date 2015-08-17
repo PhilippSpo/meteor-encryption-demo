@@ -21,7 +21,11 @@ Template.activeChats.helpers({
     activeChats: function () {
         // check the recent messages of the user
         var messages = Messages.find({
-            author: Meteor.userId()
+            $or: [{
+                author: Meteor.userId()
+            }, {
+                chatPartner: Meteor.userId()
+            }]
         }).fetch();
         groupedMessages = _.groupBy(messages, 'chatPartner');
         var resultMessages = [];
@@ -33,14 +37,20 @@ Template.activeChats.helpers({
     }
 });
 
-Template.activeChatsListItem.onCreated(function() {
+Template.activeChatsListItem.onCreated(function () {
     MessagesEncryption.getMessage.call(this);
 });
 
 Template.activeChatsListItem.helpers({
     user: function () {
+        var userId = this.chatPartner;
+        // check if the chat partner is the own user
+        if(userId === Meteor.userId()){
+            // if so use the author as the email that user that is displayed
+            userId = this.author;
+        }
         return Meteor.users.findOne({
-            _id: this.chatPartner
+            _id: userId
         });
     },
     email: function () {
@@ -54,7 +64,8 @@ Template.activeChatsListItem.helpers({
         return Gravatar.imageUrl(md5Hash, options);
     },
     formattedDate: function () {
-        if(!moment().startOf('day').isSame(moment(this.date).startOf('day'))) {
+        if (!moment().startOf('day').isSame(moment(this.date).startOf(
+                'day'))) {
             return moment(this.date).format('dd');
         }
         return moment(this.date).format('HH:mm');
@@ -62,9 +73,15 @@ Template.activeChatsListItem.helpers({
 });
 
 Template.activeChatsListItem.events({
-    'click': function() {
+    'click': function () {
+        var userId = this.chatPartner;
+        // check if the chat partner is the own user
+        if(userId === Meteor.userId()){
+            // if so use the author as the email that user that is displayed
+            userId = this.author;
+        }
         FlowRouter.go('/chat/:chatPartnerId', {
-            chatPartnerId: this.chatPartner
+            chatPartnerId: userId
         });
     }
 });

@@ -5,11 +5,13 @@ MessagesSchema = new SimpleSchema({
     chatPartner: {
         type: String,
         label: "Chat Partner",
+        index: 1
     },
     // user id
     author: {
         type: String,
-        label: "Author"
+        label: "Author",
+        index: 1
     },
     date: {
         type: Date,
@@ -39,6 +41,10 @@ if (Meteor.isClient) {
     // init encryption on collection Messages
     MessagesEncryption = new CollectionEncryption(Messages, 'message',
         fields, MessagesSchema, false);
+
+    MessagesEncryption.finishedInsertWithEncryption = function(doc) {
+        MessagesEncryption.shareDocWithUser(doc._id, doc.chatPartner);
+    };
 
     MessagesEncryption.getMessage = function(id) {
         var self = this;

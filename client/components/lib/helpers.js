@@ -7,6 +7,5 @@ Template.registerHelper('messageObj', function () {
 });
 
 Template.registerHelper('loading', function () {
-    console.log(Template.instance().loading.get());
     return Template.instance().loading.get();
 });

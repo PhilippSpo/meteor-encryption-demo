@@ -7,7 +7,7 @@ Template.chat.onCreated(function () {
     self.autorun(function () {
         var handle = MessagesSubs.subscribe(
             'messages', partnerId);
-        MessagesSubs.subscribe('principals');
+        self.subscribe('principals', partnerId);
         self.ready.set(handle.ready());
     });
 });
@@ -19,7 +19,16 @@ Template.chat.helpers({
     messages: function () {
         var partnerId = FlowRouter.getParam('chatPartnerId');
         return Messages.find({
-            chatPartner: partnerId
+            chatPartner: {
+                $in: [
+                    partnerId, Meteor.userId()
+                ]
+            },
+            author: {
+                $in: [
+                    partnerId, Meteor.userId()
+                ]
+            }
         });
         // var messages = Messages.find().fetch();
         // var messagesToRemove = [];

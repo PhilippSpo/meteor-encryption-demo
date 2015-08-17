@@ -1,7 +1,11 @@
 Meteor.publish('messages', function (partnerId) {
     if (!partnerId) {
         return Messages.find({
-            author: this.userId
+            $or: [{
+                author: this.userId
+            }, {
+                chatPartner: this.userId
+            }]
         });
     }
     return [
