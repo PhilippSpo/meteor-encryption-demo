@@ -7,13 +7,26 @@
             <div class="list-heading">Freind Requests</div>
             {{>friendRequestItem}}
         {{/each}}
-        <div class="list-heading">Contacts</div>
-        {{#each contacts}}
-            {{> contactsListItem}}
-        {{/each}}
+        {{#if contacts}}
+            <div class="list-heading">Contacts</div>
+            {{#each contacts}}
+                {{> contactsListItem}}
+            {{/each}}
+        {{else}}
+            {{#unless friendRequests}}
+                <div class="no-content">
+                    <p>You have no chats yet</p>
+                </div>
+            {{/unless}}
+        {{/if}}
     {{else}}
         <div class="main-loading">
             {{> loading size="small"}}
         </div>
     {{/if}}
+    <div class="fixed-action-btn">
+        <div class="btn-floating btn-large waves-effect" data-open-dialog data-template="addContact" data-fixedfooter="true" data-big="true">
+            <i class="material-icons">person_add</i>
+        </div>
+    </div>
 </template>

@@ -38,6 +38,8 @@ header.public
 		font-weight 200
 		font-size 3.5rem
 		margin-top 0
+		+below(450px)
+			font-size 2.5rem
 
 	h2
 		margin-bottom 4rem
@@ -46,32 +48,50 @@ header.public
 	overflow hidden
 
 	width 100%
-	height 100vh
-	background-image url('/bg-small.jpg')
+	background-image url('/bg-small.jpeg')
 	background-size cover
 	background-position center
 
 	color white
 
-	> div
-		// background rgba(0,0,0,0.8)
-		position absolute
-		top 0
-		left 0
-		right 0
-		bottom 81px
+	+below(601px)
+		> div
+			min-height 90vh
+			background rgba(0,0,0,0.4)
+			.landing-content
+				height 90vh
+	+above(600px)
+		height 100vh
+		> div
+			background rgba(0,0,0,0.4)
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 81px
 
-	> footer
-		position absolute
-		bottom 0
-		left 0
-		right 0
+		> footer
+			position absolute
+			bottom 0
+			left 0
+			right 0
 
 	.landing-content
 		padding 20px
 
 		height 100%
 		width 100%
+
+		.input-field label
+			color white
+		.at-input>input:not(.valid)
+			border-bottom 1px solid white
+		.btn
+			text-decoration none
+			background-color landing-color
+		a:not(.btn):not(.btn-flat)
+			color white
+			text-decoration underline
 
 		> div
 			width 100%

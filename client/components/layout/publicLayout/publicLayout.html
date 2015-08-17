@@ -9,13 +9,7 @@
 							{{> loading}}
 						{{else}}
 							{{#unless loggedIn}}
-								<h1>Meteor Encryption Demo</h1>
-								<h4>Sign up/in to test it :)</h4>
-								<h4>
-									(You might want to go with a "junk" email
-									address, since the one you enter here will
-									be visible public to all other users)
-								</h4>
+								<h1>planifica:encryption</h1>
 								{{> Template.dynamic template=main}}
 							{{else}}
 								Generating / loading your RSA key...<br>

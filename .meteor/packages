@@ -45,3 +45,6 @@ jquery
 # moment
 lbee:moment-helpers
 momentjs:moment
+
+# mobile
+fastclick
