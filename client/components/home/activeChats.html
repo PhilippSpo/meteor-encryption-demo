@@ -4,9 +4,7 @@
         {{#if activeChats}}
             <div class="list-heading">Active chats</div>
             {{#each activeChats}}
-                {{#with message}}
-                    {{> activeChatsListItem}}
-                {{/with}}
+                {{> activeChatsListItem}}
             {{/each}}
         {{else}}
             <div class="no-content">
@@ -27,15 +25,23 @@
 
 <template name="activeChatsListItem">
     <div class="list-item with-divider clickable">
-        <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
-        <div>
+        {{#if loading}}
             <div>
-                <div>{{#with user}}{{email}}{{/with}}</div>
-                <div class="truncate secondary">{{message}}</div>
+                {{> keyGenLoading size="small"}}
             </div>
-        </div>
-        <div>
-            {{formattedDate}}
-        </div>
+            <div></div>
+        {{/if}}
+        {{#with messageObj}}
+            <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
+            <div>
+                <div>
+                    <div>{{#with user}}{{email}}{{/with}}</div>
+                    <div class="truncate secondary">{{message}}</div>
+                </div>
+            </div>
+            <div>
+                {{formattedDate}}
+            </div>
+        {{/with}}
     </div>
 </template>

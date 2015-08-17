@@ -4,9 +4,7 @@
             {{#if ready}}
                 <ul class="collection">
                     {{#each messages}}
-                        {{#with messageObj}}
-                            {{> message}}
-                        {{/with}}
+                        {{> message}}
                     {{/each}}
                 </ul>
             {{else}}

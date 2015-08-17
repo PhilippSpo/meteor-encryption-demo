@@ -1,16 +1,23 @@
 <template name="message">
-    <li class="collection-item avatar myMessage">
-        <img class="circle" src="{{gravatar}}" />
-        <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{email}}{{/if}}</span>
-            {{#if messages}}
-                {{#each messages}}
-                <p>
-                    {{this}}
-                </p>
-                {{/each}}
-            {{else}}
-                <p>{{message}}</p>
-            {{/if}}
-        <span class="secondary-content">{{formattedDate}}</span>
+    <li>
+        {{#if loading}}
+            {{> keyGenLoading size="small"}}
+        {{/if}}
     </li>
+    {{#with messageObj}}
+        <li class="collection-item avatar myMessage">
+            <img class="circle" src="{{gravatar}}" />
+            <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{email}}{{/if}}</span>
+                {{#if messages}}
+                    {{#each messages}}
+                    <p>
+                        {{this}}
+                    </p>
+                    {{/each}}
+                {{else}}
+                    <p>{{message}}</p>
+                {{/if}}
+            <span class="secondary-content">{{formattedDate}}</span>
+        </li>
+    {{/with}}
 </template>

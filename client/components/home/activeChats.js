@@ -30,13 +30,11 @@ Template.activeChats.helpers({
                 1]);
         });
         return resultMessages;
-    },
-    message: function () {
-        var message = Messages.findOne({
-            _id: this._id
-        });
-        return message;
     }
+});
+
+Template.activeChatsListItem.onCreated(function() {
+    MessagesEncryption.getMessage.call(this);
 });
 
 Template.activeChatsListItem.helpers({

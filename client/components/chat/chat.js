@@ -18,7 +18,9 @@ Template.chat.helpers({
     },
     messages: function () {
         var partnerId = FlowRouter.getParam('chatPartnerId');
-        return Messages.find({chatPartner: partnerId});
+        return Messages.find({
+            chatPartner: partnerId
+        });
         // var messages = Messages.find().fetch();
         // var messagesToRemove = [];
         // // iterate over messages and find consecutive messages that were written within 5 minutes which can be joined
@@ -48,9 +50,6 @@ Template.chat.helpers({
         // })
         // console.log(messages);
         // return messages;
-    },
-    messageObj: function () {
-        return Messages.findOne({_id: this._id});
     }
 });
 
@@ -77,14 +76,14 @@ Template.chat.events({
         // clear message
         $('#message').val('');
     },
-    'keyup #message': function(e, tmplInst) {
-        if(e.which === 13 || e.which === 8) {
+    'keyup #message': function (e, tmplInst) {
+        if (e.which === 13 || e.which === 8) {
             // enter was pressed -> we need to increase the hight
             // backspace was pressed -> we potentially decrease the hight
             var messagesContainer = $(tmplInst.find('.messages'));
             var form = $(tmplInst.find('.chat-form'));
             var message = $(tmplInst.find('#message'));
-            var scrollheight = message.outerHeight()+60;
+            var scrollheight = message.outerHeight() + 60;
             form.css('height', scrollheight + 'px');
             messagesContainer.css('bottom', scrollheight + 'px');
         }

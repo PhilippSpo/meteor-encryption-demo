@@ -37,6 +37,27 @@ if (Meteor.isClient) {
     // define fields to be encrypted
     var fields = ['message'];
     // init encryption on collection Messages
-    DataObjectsEncryption = new CollectionEncryption(Messages, 'message',
+    MessagesEncryption = new CollectionEncryption(Messages, 'message',
         fields, MessagesSchema, false);
+
+    MessagesEncryption.getMessage = function(id) {
+        var self = this;
+        self.loading = new ReactiveVar(true);
+        self.message = new ReactiveVar();
+
+        self.getMessage = function(id) {
+          Meteor.defer(function() {
+            Tracker.autorun(function() {
+              self.loading.set(true);
+              var message = Messages.findOne({
+                _id: id
+              });
+              if (message) {
+                self.message.set(message);
+              }
+              self.loading.set(false);
+            });
+          });
+        };
+    };
 }
