@@ -20,5 +20,11 @@ Template.message.helpers({
         };
         var md5Hash = Gravatar.hash(user.emails[0].address);
         return Gravatar.imageUrl(md5Hash, options);
+    },
+    formattedDate: function () {
+        if(!moment().startOf('day').isSame(moment(this.date).startOf('day'))) {
+            return moment(this.date).format('dd');
+        }
+        return moment(this.date).format('HH:mm');
     }
 });
