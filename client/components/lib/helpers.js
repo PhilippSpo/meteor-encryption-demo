@@ -1,9 +1,9 @@
 Template.registerHelper('messageObj', function () {
-    var message = Template.instance().message.get();
-    if (!message) {
-        Template.instance().getMessage(this._id);
+    // if the doc is already decrypted just return it
+    if(!this.encrypted){
+        return this;
     }
-    return message;
+    return Messages.findOne({_id: this._id});
 });
 
 Template.registerHelper('loading', function () {

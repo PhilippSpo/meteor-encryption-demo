@@ -30,35 +30,6 @@ Template.chat.helpers({
                 ]
             }
         });
-        // var messages = Messages.find().fetch();
-        // var messagesToRemove = [];
-        // // iterate over messages and find consecutive messages that were written within 5 minutes which can be joined
-        // _.each(messages, function(message, index) {
-        //     // findOne on the message in order to get the decrypted message
-        //     message = Messages.findOne({_id: message._id});
-        //     // check if previous message happened within 5 minutes
-        //     var nextMessage = messages[index+1];
-        //     if (nextMessage) {
-        //         // create a messages array to which we potentially add consecutive messages
-        //         nextMessage.messages = [nextMessage.message];
-        //         // check if the consecutive messages have the same author
-        //         if (message.author === nextMessage.author && moment(message.date).diff(nextMessage.date, 'minutes') < 5) {
-        //             // add current message to next message
-        //             nextMessage.messages.push(message.message);
-        //             // overwrite the date, so that the message collection shows the oldest date
-        //             nextMessage.date = message.date;
-        //
-        //             messagesToRemove.push(index);
-        //         }
-        //     }
-        // });
-        // // remove all the messages
-        // _.each(messagesToRemove, function(messageIndex) {
-        //     // remove the message
-        //     messages.splice(messageIndex, 1);
-        // })
-        // console.log(messages);
-        // return messages;
     }
 });
 

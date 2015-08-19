@@ -37,15 +37,11 @@ Template.activeChats.helpers({
     }
 });
 
-Template.activeChatsListItem.onCreated(function () {
-    MessagesEncryption.getMessage.call(this);
-});
-
 Template.activeChatsListItem.helpers({
     user: function () {
         var userId = this.chatPartner;
         // check if the chat partner is the own user
-        if(userId === Meteor.userId()){
+        if (userId === Meteor.userId()) {
             // if so use the author as the email that user that is displayed
             userId = this.author;
         }
@@ -76,7 +72,7 @@ Template.activeChatsListItem.events({
     'click': function () {
         var userId = this.chatPartner;
         // check if the chat partner is the own user
-        if(userId === Meteor.userId()){
+        if (userId === Meteor.userId()) {
             // if so use the author as the email that user that is displayed
             userId = this.author;
         }

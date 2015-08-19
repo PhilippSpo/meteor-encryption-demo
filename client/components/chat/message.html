@@ -1,10 +1,5 @@
 <template name="message">
-    <li>
-        {{#if loading}}
-            {{> keyGenLoading size="small"}}
-        {{/if}}
-    </li>
-    {{#with messageObj}}
+    {{#unless encrypted}}
         <li class="collection-item avatar myMessage">
             <img class="circle" src="{{gravatar}}" />
             <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{email}}{{/if}}</span>
@@ -19,5 +14,11 @@
                 {{/if}}
             <span class="secondary-content">{{formattedDate}}</span>
         </li>
-    {{/with}}
+    {{else}}
+        <li>
+            {{#if loading}}
+                {{> keyGenLoading size="small"}}
+            {{/if}}
+        </li>
+    {{/unless}}
 </template>

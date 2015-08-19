@@ -25,23 +25,22 @@
 
 <template name="activeChatsListItem">
     <div class="list-item with-divider clickable">
-        {{#if loading}}
+        {{#unless encrypted}}
+                <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
+                <div>
+                    <div>
+                        <div>{{#with user}}{{email}}{{/with}}</div>
+                        <div class="truncate secondary">{{message}}</div>
+                    </div>
+                </div>
+                <div>
+                    {{formattedDate}}
+                </div>
+        {{else}}
             <div>
                 {{> keyGenLoading size="small"}}
             </div>
             <div></div>
-        {{/if}}
-        {{#with messageObj}}
-            <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
-            <div>
-                <div>
-                    <div>{{#with user}}{{email}}{{/with}}</div>
-                    <div class="truncate secondary">{{message}}</div>
-                </div>
-            </div>
-            <div>
-                {{formattedDate}}
-            </div>
-        {{/with}}
+        {{/unless}}
     </div>
 </template>

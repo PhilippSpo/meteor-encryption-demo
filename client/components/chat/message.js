@@ -1,7 +1,3 @@
-Template.message.onCreated(function() {
-    MessagesEncryption.getMessage.call(this);
-});
-
 Template.message.helpers({
     ifUserIsAuthor: function() {
         return this.author === Meteor.userId();
