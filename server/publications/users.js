@@ -2,7 +2,7 @@ Meteor.publish("activeChats", function () {
     var currentUser = Meteor.users.findOne({
         _id: this.userId
     });
-    if (currentUser && currentUser.profile.contacts) {
+    if (currentUser && currentUser.profile && currentUser.profile.contacts) {
         return Meteor.users.find({
             _id: {
                 $in: currentUser.profile.contacts
@@ -17,7 +17,7 @@ Meteor.publish("contacts", function () {
     var currentUser = Meteor.users.findOne({
         _id: this.userId
     });
-    if (currentUser) {
+    if (currentUser && currentUser.profile) {
         var searchIn = [];
         if (currentUser.profile.contacts) {
             searchIn = searchIn.concat(currentUser.profile.contacts);

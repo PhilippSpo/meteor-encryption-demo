@@ -5,5 +5,8 @@ Template.privateMode.helpers({
   canShow: function() {
     var canShow = !!Meteor.user();
     return canShow;
+  },
+  privateKey: function () {
+      return Session.get('privateKey');
   }
 });

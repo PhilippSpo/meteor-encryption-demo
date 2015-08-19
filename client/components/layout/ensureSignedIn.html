@@ -1,9 +1,13 @@
 <template name="privateMode">
   {{#if authInProcess}}
-    {{> loading}}
+    {{>loading}}
   {{else}}
     {{#if canShow}}
-      {{> UI.contentBlock }}
+        {{#if privateKey}}
+          {{> UI.contentBlock }}
+        {{else}}
+          {{> publicLayout main="generatingKey"}}
+        {{/if}}
     {{else}}
       {{> publicLayout main="fullPageAtForm"}}
     {{/if}}
