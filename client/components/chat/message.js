@@ -1,12 +1,16 @@
+Template.message.onRendered(function () {
+    $('.messages').scrollTop($('.collection').height());
+});
+
 Template.message.helpers({
-    ifUserIsAuthor: function() {
+    ifUserIsAuthor: function () {
         return this.author === Meteor.userId();
     },
     email: function () {
         var user = Meteor.users.findOne({
             _id: this.author
         });
-        if(!user) {
+        if (!user) {
             return;
         }
         return user.emails[0].address;
@@ -22,7 +26,8 @@ Template.message.helpers({
         return Gravatar.imageUrl(md5Hash, options);
     },
     formattedDate: function () {
-        if(!moment().startOf('day').isSame(moment(this.date).startOf('day'))) {
+        if (!moment().startOf('day').isSame(moment(this.date).startOf(
+                'day'))) {
             return moment(this.date).format('dd');
         }
         return moment(this.date).format('HH:mm');
