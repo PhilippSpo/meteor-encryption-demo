@@ -10,31 +10,6 @@ Template.chat.onCreated(function () {
         self.subscribe('principals', partnerId);
         self.ready.set(handle.ready());
     });
-    // listen to messages that get added
-    var messagesCursor = Messages.find({
-        chatPartner: {
-            $in: [
-                partnerId, Meteor.userId()
-            ]
-        },
-        author: {
-            $in: [
-                partnerId, Meteor.userId()
-            ]
-        }
-    });
-    self.scrollBottom = function() {
-        var messagesCollection = $(self.find(
-            '.messages'));
-        messagesCollection.scrollTop($(self.find('.collection')).height());
-    };
-    messagesCursor.observeChanges({
-        added: function (id, fields) {
-            if (fields.author === Meteor.userId()) {
-                self.scrollBottom();
-            }
-        }
-    });
 });
 
 Template.chat.helpers({
