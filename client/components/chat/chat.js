@@ -72,6 +72,16 @@ Template.chat.events({
         // clear message
         $('#message').val('');
     },
+    'keydown #message': function(e, tmplInst) {
+        var message = $(tmplInst.find('#message'));
+        var scrollheight = message.outerHeight() + 60;
+        if (($('.chat').height() - 100) < scrollheight) {
+            // no more line breaks will be accepted
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    },
     'keyup #message': function (e, tmplInst) {
         if (e.which === 13 || e.which === 8) {
             // enter was pressed -> we need to increase the hight
@@ -80,6 +90,9 @@ Template.chat.events({
             var form = $(tmplInst.find('.chat-form'));
             var message = $(tmplInst.find('#message'));
             var scrollheight = message.outerHeight() + 60;
+            if (($('.chat').height() - 100) < scrollheight) {
+                // scrollheight = ($('chat').height() - 100);
+            }
             form.css('height', scrollheight + 'px');
             messagesContainer.css('bottom', scrollheight + 'px');
         }
