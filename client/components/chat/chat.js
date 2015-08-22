@@ -10,6 +10,21 @@ Template.chat.onCreated(function () {
         self.subscribe('principals', partnerId);
         self.ready.set(handle.ready());
     });
+    // self.autorun(function() {
+    //     var messages = Messages.find({
+    //         chatPartner: {
+    //             $in: [
+    //                 partnerId, Meteor.userId()
+    //             ]
+    //         },
+    //         author: {
+    //             $in: [
+    //                 partnerId, Meteor.userId()
+    //             ]
+    //         }
+    //     });
+    //     console.log(messages.fetch());
+    // });
 });
 
 Template.chat.helpers({

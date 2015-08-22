@@ -3,6 +3,9 @@ Template.message.onRendered(function () {
 });
 
 Template.message.helpers({
+    messageObj: function () {
+        return Messages.findOne({_id: this._id});
+    },
     ifUserIsAuthor: function () {
         return this.author === Meteor.userId();
     },

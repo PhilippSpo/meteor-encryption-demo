@@ -1,24 +1,16 @@
 <template name="message">
-    {{#unless encrypted}}
+    {{#with messageObj}}
         <li class="collection-item avatar myMessage">
             <img class="circle" src="{{gravatar}}" />
             <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{email}}{{/if}}</span>
-                {{#if messages}}
-                    {{#each messages}}
-                    <p>
-                        {{this}}
-                    </p>
-                    {{/each}}
-                {{else}}
-                    <p>{{message}}</p>
-                {{/if}}
+                <p>{{message}}</p>
             <span class="secondary-content">{{formattedDate}}</span>
         </li>
     {{else}}
         <li>
-            {{#if loading}}
+            <!-- {{#if loading}} -->
                 {{> keyGenLoading size="small"}}
-            {{/if}}
+            <!-- {{/if}} -->
         </li>
-    {{/unless}}
+    {{/with}}
 </template>
