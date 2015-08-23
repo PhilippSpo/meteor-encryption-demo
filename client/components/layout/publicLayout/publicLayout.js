@@ -6,7 +6,7 @@ Template.publicLayout.helpers({
     var loggedIn = !!Meteor.user();
     if(loggedIn) {
         Tracker.autorun(function() {
-            var privateKey = Session.get('privateKey');
+            var privateKey = EncryptionUtils.hasPrivateKey();
             if(privateKey){
                 // render private layout
                 BlazeLayout.render('privateLayout', {

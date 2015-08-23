@@ -38,6 +38,9 @@ Template.activeChats.helpers({
 });
 
 Template.activeChatsListItem.helpers({
+    messageObj: function () {
+        return Messages.findOne({_id: this._id});
+    },
     user: function () {
         var userId = this.chatPartner;
         // check if the chat partner is the own user
