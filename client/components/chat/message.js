@@ -9,14 +9,14 @@ Template.message.helpers({
     ifUserIsAuthor: function () {
         return this.author === Meteor.userId();
     },
-    email: function () {
+    username: function () {
         var user = Meteor.users.findOne({
             _id: this.author
         });
         if (!user) {
             return;
         }
-        return user.emails[0].address;
+        return user.username;
     },
     gravatar: function () {
         var user = Meteor.users.findOne({

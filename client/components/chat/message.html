@@ -2,7 +2,7 @@
     {{#with messageObj}}
         <li class="collection-item avatar myMessage">
             <img class="circle" src="{{gravatar}}" />
-            <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{email}}{{/if}}</span>
+            <span class="title name">{{#if ifUserIsAuthor}}Me{{else}}{{username}}{{/if}}</span>
                 <p>{{message}}</p>
             <span class="secondary-content">{{formattedDate}}</span>
         </li>

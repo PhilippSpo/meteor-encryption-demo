@@ -1,7 +1,4 @@
 Template.contactsListItem.helpers({
-    email: function () {
-        return this.emails[0].address;
-    },
     gravatar: function () {
         var options = {
             secure: true

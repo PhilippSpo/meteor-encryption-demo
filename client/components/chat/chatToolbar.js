@@ -1,9 +1,9 @@
 Template.chatToolbar.helpers({
-    chatPartnerMail: function() {
+    chatPartnerName: function() {
         var partnerId = FlowRouter.getParam('chatPartnerId');
         var chatPartner = Meteor.users.findOne({_id: partnerId});
         if (chatPartner) {
-            return chatPartner.emails[0].address;
+            return chatPartner.username;
         }
         return null;
     }

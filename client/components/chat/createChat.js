@@ -41,9 +41,6 @@ Template.addContactToChatItem.onCreated(function() {
 });
 
 Template.addContactToChatItem.helpers({
-    email: function () {
-        return this.emails[0].address;
-    },
     gravatar: function () {
         var options = {
             secure: true

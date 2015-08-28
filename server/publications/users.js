@@ -43,6 +43,7 @@ Meteor.methods({
             }
         }, {
             fields: {
+                username: 1,
                 emails: 1
             }
         }).fetch();
@@ -52,8 +53,9 @@ Meteor.methods({
      * @param otherUserId - id of the user that the current user wants to make freinds with
      */
     requestFriendship: function (otherUserId) {
-        if(!otherUserId){
-            throw new Meteor.Error('no user given', 'no user to make freinds with is given');
+        if (!otherUserId) {
+            throw new Meteor.Error('no user given',
+                'no user to make freinds with is given');
         }
         // add the request to the other user's incoming friend requests
         Meteor.users.update({
@@ -76,8 +78,10 @@ Meteor.methods({
      * accepts the friendship of the given user
      */
     acceptFriendship: function (otherUserId) {
-        if(!otherUserId){
-            throw new Meteor.Error('no user given', 'no user to accept freindship with is given');
+        if (!otherUserId) {
+            throw new Meteor.Error('no user given',
+                'no user to accept freindship with is given'
+            );
         }
         // remove the request from the my incoming friend requests
         // add the other user to my contacts and vice verca
@@ -108,8 +112,10 @@ Meteor.methods({
      * declines the friendship of the given user
      */
     declineFriendship: function (otherUserId) {
-        if(!otherUserId){
-            throw new Meteor.Error('no user given', 'no user to decline freindship with is given');
+        if (!otherUserId) {
+            throw new Meteor.Error('no user given',
+                'no user to decline freindship with is given'
+            );
         }
         // remove the request from the my incoming friend requests
         Meteor.users.update({
@@ -132,8 +138,10 @@ Meteor.methods({
      * removes the given user from the contacts list of both users
      */
     removeContact: function (otherUserId) {
-        if(!otherUserId){
-            throw new Meteor.Error('no user given', 'no user to decline freindship with is given');
+        if (!otherUserId) {
+            throw new Meteor.Error('no user given',
+                'no user to decline freindship with is given'
+            );
         }
         // remove the user from the other user's contacts
         Meteor.users.update({
