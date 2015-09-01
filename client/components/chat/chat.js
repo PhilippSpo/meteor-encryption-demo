@@ -22,7 +22,7 @@ Template.chat.helpers({
             chatId: chatId
         }, {
             sort: {
-                timestamp: -1
+                date: 1
             }
         });
     }
