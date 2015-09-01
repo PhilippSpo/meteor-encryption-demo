@@ -20,6 +20,10 @@ Template.chat.helpers({
         var chatId = FlowRouter.getParam('chatId');
         return Messages.find({
             chatId: chatId
+        }, {
+            sort: {
+                timestamp: -1
+            }
         });
     }
 });
@@ -27,25 +31,7 @@ Template.chat.helpers({
 Template.chat.events({
     'submit form': function (e) {
         e.preventDefault();
-        var message = $('#message').val();
-        // check if there is a message
-        if (!message) {
-            Materialize.toast('Please provide a message', 2000);
-            return;
-        }
-        // get the chat
-        var chatId = FlowRouter.getParam('chatId');
-        // send the message
-        Messages.insert({
-            // this will be validated by the server
-            author: Meteor.userId(),
-            // this is should validated by the server
-            date: new Date(),
-            message: message,
-            chatId: chatId
-        });
-        // clear message
-        $('#message').val('');
+        submitForm();
     },
     'keydown #message': function (e, tmplInst) {
         var message = $(tmplInst.find('#message'));
@@ -71,5 +57,39 @@ Template.chat.events({
             form.css('height', scrollheight + 'px');
             messagesContainer.css('bottom', scrollheight + 'px');
         }
+    },
+    'keypress form': function (e) {
+        if (e.which == 13 && !e.ctrlKey) {
+            submitForm();
+        }
+    },
+    'keydown form': function (e) {
+        if (e.ctrlKey && (e.which == 13 || e.keyCode == 13)) {
+            $('#message').val(function (i, val) {
+                return val + '\n';
+            });
+        }
     }
 });
+
+var submitForm = function () {
+    var message = $('#message').val();
+    // check if there is a message
+    if (!message) {
+        Materialize.toast('Please provide a message', 2000);
+        return;
+    }
+    // get the chat
+    var chatId = FlowRouter.getParam('chatId');
+    // send the message
+    Messages.insert({
+        // this will be validated by the server
+        author: Meteor.userId(),
+        // this is should validated by the server
+        date: new Date(),
+        message: message,
+        chatId: chatId
+    });
+    // clear message
+    $('#message').val('');
+};

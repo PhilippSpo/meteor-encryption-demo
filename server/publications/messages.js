@@ -10,6 +10,10 @@ Meteor.publish('messages', function (chatId) {
     return [
         Messages.find({
             chatId: chatId
+        }, {
+            sort: {
+                date: 1
+            }
         }),
         Meteor.users.find({
             _id: {
