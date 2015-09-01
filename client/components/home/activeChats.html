@@ -24,9 +24,9 @@
 </template>
 
 <template name="activeChatsListItem">
-    {{#if ready}}
-        {{#with messageObj}}
-            <div class="list-item with-divider clickable">
+    <div class="list-item with-divider clickable">
+        {{#if ready}}
+            {{#with messageObj}}
                 {{#unless encrypted}}
                         <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
                         <div>
@@ -44,7 +44,12 @@
                     </div>
                     <div></div>
                 {{/unless}}
+            {{/with}}
+        {{else}}
+            <div>
+                {{> loading size="small"}}
             </div>
-        {{/with}}
-    {{/if}}
+            <div></div>
+        {{/if}}
+    </div>
 </template>

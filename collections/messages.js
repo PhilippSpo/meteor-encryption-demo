@@ -38,9 +38,15 @@ if (Meteor.isClient) {
     // init encryption on collection Messages
     MessagesEncryption = new CollectionEncryption(Messages, fields, {
         onFinishedDocEncryption: function (doc) {
-            _.each(doc.partners, function (partnerId) {
-                if(partnerId !== Meteor.userId) {
-                    MessagesEncryption.shareDocWithUser(doc._id, partnerId);
+            var chat = Chats.findOne({
+                _id: doc.chatId
+            });
+            _.each(chat.partners, function (partnerId) {
+                if(partnerId !== Meteor.userId()) {
+                    Meteor.subscribe('principals', partnerId, function () {
+                        console.log('share with '+partnerId);
+                        MessagesEncryption.shareDocWithUser(doc._id, partnerId);
+                    });
                 }
             });
         }

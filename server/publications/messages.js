@@ -5,6 +5,7 @@ Meteor.publish('messages', function (chatId) {
     });
     // check if the users is member of the chat
     if (!_.contains(chat.partners, this.userId)) {
+        this.ready();
         return;
     }
     return [

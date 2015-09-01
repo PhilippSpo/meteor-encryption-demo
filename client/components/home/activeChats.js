@@ -25,11 +25,11 @@ Template.activeChats.helpers({
 var ActiveChatMessageSubs = new SubsManager();
 Template.activeChatsListItem.onCreated(function () {
     var self = this;
-
     // Subscription
     self.ready = new ReactiveVar();
     self.autorun(function () {
-        var handle = ActiveChatMessageSubs.subscribe('messages', self.data._id);
+        var handle = ActiveChatMessageSubs.subscribe('messages',
+            self.data._id);
         self.ready.set(handle.ready());
     });
 });
@@ -39,17 +39,25 @@ Template.activeChatsListItem.helpers({
         return Template.instance().ready.get();
     },
     messageObj: function () {
-        return Messages.findOne({chatId: this._id});
+        return Messages.findOne({
+            chatId: this._id
+        }, {
+            sort: {
+                date: -1
+            }
+        });
     },
-    chatPartners: function() {
+    chatPartners: function () {
         var chat = Chats.findOne({
             _id: Template.instance().data._id
         });
-        var partners = _.filter(chat.partners, function(partner) {
+        var partners = _.filter(chat.partners, function (partner) {
             return partner !== Meteor.userId();
         });
         partners = _.map(partners, function (partnerId) {
-            var user = Meteor.users.findOne({_id: partnerId});
+            var user = Meteor.users.findOne({
+                _id: partnerId
+            });
             if (user) {
                 return user.username;
             }
