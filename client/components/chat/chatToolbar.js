@@ -19,12 +19,16 @@ Template.chatToolbar.helpers({
         if(!chat){
             return;
         }
-        var partners = _.map(chat.partners, function (partnerId) {
-            if(partnerId !== Meteor.userId()){
-                return Meteor.users.findOne({_id: partnerId});
+        var partners = _.filter(chat.partners, function(partner) {
+            return partner !== Meteor.userId();
+        });
+        partners = _.map(partners, function (partnerId) {
+            var user = Meteor.users.findOne({_id: partnerId});
+            if (user) {
+                return user.username;
             }
         });
-        return partners;
+        return partners.join(', ');
     },
     ready: function () {
         return Template.instance().ready.get();
