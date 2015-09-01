@@ -45,6 +45,10 @@ Template.chat.helpers({
                     partnerId, Meteor.userId()
                 ]
             }
+        },{
+          sort: {
+            timestamp: -1
+          }
         });
     }
 });
@@ -52,25 +56,7 @@ Template.chat.helpers({
 Template.chat.events({
     'submit form': function (e) {
         e.preventDefault();
-        var message = $('#message').val();
-        // check if there is a message
-        if (!message) {
-            Materialize.toast('Please provide a message', 2000);
-            return;
-        }
-        // get the partner
-        var partnerId = FlowRouter.getParam('chatPartnerId');
-        // send the message
-        Messages.insert({
-            chatPartner: partnerId,
-            // this will be validated by the server
-            author: Meteor.userId(),
-            // this is should validated by the server
-            date: new Date(),
-            message: message
-        });
-        // clear message
-        $('#message').val('');
+        submitForm();
     },
     'keydown #message': function(e, tmplInst) {
         var message = $(tmplInst.find('#message'));
@@ -96,5 +82,33 @@ Template.chat.events({
             form.css('height', scrollheight + 'px');
             messagesContainer.css('bottom', scrollheight + 'px');
         }
-    }
+    },
+    'keypress form': function(e) {
+        if (e.charCode == 13) {
+          e.preventDefault();
+          submitForm();
+        }
+      }
 });
+
+var submitForm = function() {
+  var message = $('#message').val();
+  // check if there is a message
+  if (!message) {
+      Materialize.toast('Please provide a message', 2000);
+      return;
+  }
+  // get the partner
+  var partnerId = FlowRouter.getParam('chatPartnerId');
+  // send the message
+  Messages.insert({
+      chatPartner: partnerId,
+      // this will be validated by the server
+      author: Meteor.userId(),
+      // this is should validated by the server
+      date: new Date(),
+      message: message
+  });
+  // clear message
+  $('#message').val('');
+};
