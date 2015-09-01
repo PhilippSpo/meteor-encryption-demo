@@ -84,11 +84,17 @@ Template.chat.events({
         }
     },
     'keypress form': function(e) {
-        if (e.charCode == 13) {
-          e.preventDefault();
-          submitForm();
-        }
+      if (e.which == 13 && !e.ctrlKey) {
+        submitForm();
       }
+    },
+    'keydown form': function(e){
+      if(e.ctrlKey && (e.which == 13 || e.keyCode == 13)) {
+        $('#message').val(function(i, val) {
+            return val + '\n';
+        });
+      }
+    }
 });
 
 var submitForm = function() {
