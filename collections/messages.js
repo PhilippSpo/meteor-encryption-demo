@@ -2,12 +2,6 @@ Messages = new Mongo.Collection("messages");
 
 MessagesSchema = new SimpleSchema({
     // user id
-    chatPartner: {
-        type: String,
-        label: "Chat Partner",
-        index: 1
-    },
-    // user id
     author: {
         type: String,
         label: "Author",
@@ -25,6 +19,9 @@ MessagesSchema = new SimpleSchema({
     encrypted: {
         type: Boolean,
         defaultValue: false
+    },
+    chatId: {
+        type: String
     }
 });
 
@@ -41,7 +38,11 @@ if (Meteor.isClient) {
     // init encryption on collection Messages
     MessagesEncryption = new CollectionEncryption(Messages, fields, {
         onFinishedDocEncryption: function (doc) {
-            MessagesEncryption.shareDocWithUser(doc._id, doc.chatPartner);
+            _.each(doc.partners, function (partnerId) {
+                if(partnerId !== Meteor.userId) {
+                    MessagesEncryption.shareDocWithUser(doc._id, partnerId);
+                }
+            });
         }
     });
 }

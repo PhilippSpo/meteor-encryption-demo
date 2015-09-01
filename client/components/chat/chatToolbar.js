@@ -1,11 +1,33 @@
+var ChatsSubs = new SubsManager();
+Template.chatToolbar.onCreated(function () {
+    var self = this;
+    // Subscription
+    self.ready = new ReactiveVar();
+    var chatId = FlowRouter.getParam('chatId');
+    self.autorun(function () {
+        var handle = ChatsSubs.subscribe(
+            'chats', chatId);
+        self.ready.set(handle.ready());
+    });
+});
+
 Template.chatToolbar.helpers({
-    chatPartnerName: function() {
-        var partnerId = FlowRouter.getParam('chatPartnerId');
-        var chatPartner = Meteor.users.findOne({_id: partnerId});
-        if (chatPartner) {
-            return chatPartner.username;
+    chatPartners: function() {
+        var chat = Chats.findOne({
+            _id: FlowRouter.getParam('chatId')
+        });
+        if(!chat){
+            return;
         }
-        return null;
+        var partners = _.map(chat.partners, function (partnerId) {
+            if(partnerId !== Meteor.userId()){
+                return Meteor.users.findOne({_id: partnerId});
+            }
+        });
+        return partners;
+    },
+    ready: function () {
+        return Template.instance().ready.get();
     }
 });
 

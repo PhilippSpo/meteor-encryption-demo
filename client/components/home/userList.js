@@ -8,10 +8,10 @@ Template.userList.helpers({
     }
 });
 
-Template.userList.events({
-    'click .list-item': function () {
-        FlowRouter.go('/chat/:chatPartnerId', {
-            chatPartnerId: this._id
-        });
-    }
-});
+// Template.userList.events({
+//     'click .list-item': function () {
+//         FlowRouter.go('/chat/:chatId', {
+//             chatId: this._id
+//         });
+//     }
+// });

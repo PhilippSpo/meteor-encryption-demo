@@ -3,28 +3,12 @@ Template.chat.onCreated(function () {
     var self = this;
     // Subscription
     self.ready = new ReactiveVar();
-    var partnerId = FlowRouter.getParam('chatPartnerId');
+    var chatId = FlowRouter.getParam('chatId');
     self.autorun(function () {
-        var handle = MessagesSubs.subscribe(
-            'messages', partnerId);
-        self.subscribe('principals', partnerId);
+        var handle = MessagesSubs.subscribe('messages', chatId);
+        self.subscribe('principals');
         self.ready.set(handle.ready());
     });
-    // self.autorun(function() {
-    //     var messages = Messages.find({
-    //         chatPartner: {
-    //             $in: [
-    //                 partnerId, Meteor.userId()
-    //             ]
-    //         },
-    //         author: {
-    //             $in: [
-    //                 partnerId, Meteor.userId()
-    //             ]
-    //         }
-    //     });
-    //     console.log(messages.fetch());
-    // });
 });
 
 Template.chat.helpers({
@@ -33,18 +17,9 @@ Template.chat.helpers({
         return ready;
     },
     messages: function () {
-        var partnerId = FlowRouter.getParam('chatPartnerId');
+        var chatId = FlowRouter.getParam('chatId');
         return Messages.find({
-            chatPartner: {
-                $in: [
-                    partnerId, Meteor.userId()
-                ]
-            },
-            author: {
-                $in: [
-                    partnerId, Meteor.userId()
-                ]
-            }
+            chatId: chatId
         });
     }
 });
@@ -58,21 +33,21 @@ Template.chat.events({
             Materialize.toast('Please provide a message', 2000);
             return;
         }
-        // get the partner
-        var partnerId = FlowRouter.getParam('chatPartnerId');
+        // get the chat
+        var chatId = FlowRouter.getParam('chatId');
         // send the message
         Messages.insert({
-            chatPartner: partnerId,
             // this will be validated by the server
             author: Meteor.userId(),
             // this is should validated by the server
             date: new Date(),
-            message: message
+            message: message,
+            chatId: chatId
         });
         // clear message
         $('#message').val('');
     },
-    'keydown #message': function(e, tmplInst) {
+    'keydown #message': function (e, tmplInst) {
         var message = $(tmplInst.find('#message'));
         var scrollheight = message.outerHeight() + 60;
         if (($('.chat').height() - 100) < scrollheight) {

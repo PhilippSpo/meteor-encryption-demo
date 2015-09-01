@@ -1,31 +1,19 @@
-Meteor.publish('messages', function (partnerId) {
-    if (!partnerId) {
-        return Messages.find({
-            $or: [{
-                author: this.userId
-            }, {
-                chatPartner: this.userId
-            }]
-        });
+Meteor.publish('messages', function (chatId) {
+    check(chatId, String);
+    var chat = Chats.findOne({
+        _id: chatId
+    });
+    // check if the users is member of the chat
+    if (!_.contains(chat.partners, this.userId)) {
+        return;
     }
     return [
         Messages.find({
-            chatPartner: {
-                $in: [
-                    partnerId, this.userId
-                ]
-            },
-            author: {
-                $in: [
-                    partnerId, this.userId
-                ]
-            }
+            chatId: chatId
         }),
         Meteor.users.find({
             _id: {
-                $in: [
-                    partnerId, this.userId
-                ]
+                $in: chat.partners
             }
         })
     ];

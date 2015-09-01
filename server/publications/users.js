@@ -1,4 +1,4 @@
-Meteor.publish("activeChats", function () {
+Meteor.publish("activeChatUsers", function () {
     var currentUser = Meteor.users.findOne({
         _id: this.userId
     });

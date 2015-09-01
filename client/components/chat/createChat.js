@@ -4,6 +4,7 @@ Template.createChat.onCreated(function () {
 
     // Subscription
     self.ready = new ReactiveVar();
+    self.partners = new ReactiveArray();
     self.autorun(function () {
         var handle = ContactsSubs.subscribe(
             'contacts');
@@ -36,6 +37,18 @@ Template.createChat.helpers({
     }
 });
 
+Template.createChat.events({
+    'click #createChat': function(e, tmpl) {
+        GlobalUI.closeDialog();
+        chatId = Chats.insert({
+            partners: tmpl.partners.array()
+        });
+        FlowRouter.go('/chat/:chatId', {
+            chatId: chatId
+        });
+    }
+});
+
 Template.addContactToChatItem.onCreated(function() {
     this.selected = new ReactiveVar(false);
 });
@@ -47,14 +60,21 @@ Template.addContactToChatItem.helpers({
         };
         var md5Hash = Gravatar.hash(this.emails[0].address);
         return Gravatar.imageUrl(md5Hash, options);
+    },
+    selected: function () {
+        return Template.instance().selected.get();
     }
 });
 
 Template.addContactToChatItem.events({
     'click': function(e, tmpl) {
-        GlobalUI.closeDialog();
-        FlowRouter.go('/chat/:chatPartnerId', {
-            chatPartnerId: this._id
-        });
+        var selected = tmpl.selected.get();
+        if(selected){
+            tmpl.selected.set(false);
+            tmpl.parentTemplate().partners.remove(this._id);
+        } else {
+            tmpl.selected.set(true);
+            tmpl.parentTemplate().partners.push(this._id);
+        }
     }
 });

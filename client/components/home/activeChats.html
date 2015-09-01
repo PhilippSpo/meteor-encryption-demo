@@ -24,25 +24,27 @@
 </template>
 
 <template name="activeChatsListItem">
-    {{#with messageObj}}
-        <div class="list-item with-divider clickable">
-            {{#unless encrypted}}
-                    <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
-                    <div>
+    {{#if ready}}
+        {{#with messageObj}}
+            <div class="list-item with-divider clickable">
+                {{#unless encrypted}}
+                        <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
                         <div>
-                            <div>{{#with user}}{{username}}{{/with}}</div>
-                            <div class="truncate secondary">{{message}}</div>
+                            <div>
+                                <div>{{#with user}}{{username}}{{/with}}</div>
+                                <div class="truncate secondary">{{message}}</div>
+                            </div>
                         </div>
-                    </div>
+                        <div>
+                            {{formattedDate}}
+                        </div>
+                {{else}}
                     <div>
-                        {{formattedDate}}
+                        {{> keyGenLoading size="small"}}
                     </div>
-            {{else}}
-                <div>
-                    {{> keyGenLoading size="small"}}
-                </div>
-                <div></div>
-            {{/unless}}
-        </div>
-    {{/with}}
+                    <div></div>
+                {{/unless}}
+            </div>
+        {{/with}}
+    {{/if}}
 </template>

@@ -1,14 +1,13 @@
-var ActiveChatsMessagesSubs = new SubsManager();
 var ActiveChatsSubs = new SubsManager();
+var ActiveChatUsersSubs = new SubsManager();
 Template.activeChats.onCreated(function () {
     var self = this;
 
     // Subscription
     self.ready = new ReactiveVar();
     self.autorun(function () {
-        var handle = ActiveChatsMessagesSubs.subscribe(
-            'messages');
-        ActiveChatsSubs.subscribe('activeChats');
+        var handle = ActiveChatsSubs.subscribe('chats');
+        ActiveChatUsersSubs.subscribe('activeChatUsers');
         self.subscribe('principals');
         self.ready.set(handle.ready());
     });
@@ -19,35 +18,31 @@ Template.activeChats.helpers({
         return Template.instance().ready.get();
     },
     activeChats: function () {
-        // check the recent messages of the user
-        var messages = Messages.find({
-            $or: [{
-                author: Meteor.userId()
-            }, {
-                chatPartner: Meteor.userId()
-            }]
-        }).fetch();
-        groupedMessages = _.groupBy(messages, 'chatPartner');
-        var resultMessages = [];
-        _.each(groupedMessages, function (messages) {
-            resultMessages.push(messages[messages.length -
-                1]);
-        });
-        return resultMessages;
+        return Chats.find();
     }
 });
 
+var ActiveChatMessageSubs = new SubsManager();
+Template.activeChatsListItem.onCreated(function () {
+    var self = this;
+
+    // Subscription
+    self.ready = new ReactiveVar();
+    self.autorun(function () {
+        var handle = ActiveChatMessageSubs.subscribe('messages', self.data._id);
+        self.ready.set(handle.ready());
+    });
+});
+
 Template.activeChatsListItem.helpers({
+    ready: function () {
+        return Template.instance().ready.get();
+    },
     messageObj: function () {
-        return Messages.findOne({_id: this._id});
+        return Messages.findOne({chatId: this._id});
     },
     user: function () {
-        var userId = this.chatPartner;
-        // check if the chat partner is the own user
-        if (userId === Meteor.userId()) {
-            // if so use the author as the email that user that is displayed
-            userId = this.author;
-        }
+        var userId = this.author;
         return Meteor.users.findOne({
             _id: userId
         });
@@ -69,15 +64,9 @@ Template.activeChatsListItem.helpers({
 });
 
 Template.activeChatsListItem.events({
-    'click': function () {
-        var userId = this.chatPartner;
-        // check if the chat partner is the own user
-        if (userId === Meteor.userId()) {
-            // if so use the author as the email that user that is displayed
-            userId = this.author;
-        }
-        FlowRouter.go('/chat/:chatPartnerId', {
-            chatPartnerId: userId
+    'click': function (e, tmpl) {
+        FlowRouter.go('/chat/:chatId', {
+            chatId: tmpl.data._id
         });
     }
 });

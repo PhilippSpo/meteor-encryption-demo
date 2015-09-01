@@ -6,7 +6,11 @@
             </div>
         </div>
         <div>
-            {{chatPartnerName}}
+            {{#if ready}}
+                {{#each chatPartners}}
+                    {{username}}
+                {{/each}}
+            {{/if}}
         </div>
     </div>
 </template>

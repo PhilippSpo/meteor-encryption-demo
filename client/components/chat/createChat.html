@@ -1,6 +1,6 @@
 <template name="createChat">
     <div class="modal-content">
-        <h2>Select a contact you want to chat with</h2>
+        <h2>Select the contacts you want to chat with</h2>
         {{#if ready}}
             {{#each contacts}}
                 {{>addContactToChatItem}}
@@ -12,6 +12,9 @@
         {{/if}}
     </div>
     <div class="modal-footer">
+        <button id="createChat" class="btn-flat on-white waves-effect">
+            create
+        </button>
         {{> dialogAbortButton text="abort"}}
     </div>
 </template>
@@ -20,5 +23,10 @@
     <div class="list-item with-divider">
         <div><img src="{{gravatar}}" class="circle"></div>
         <div class="truncate">{{username}}</div>
+        <div>
+            {{#if selected}}
+                <i class="material-icons">check</i>
+            {{/if}}
+        </div>
     </div>
 </template>
