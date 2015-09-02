@@ -5,17 +5,26 @@ Template.publicLayout.helpers({
   loggedIn: function() {
     var loggedIn = !!Meteor.user();
     if(loggedIn) {
-        Tracker.autorun(function() {
-            var privateKey = EncryptionUtils.hasPrivateKey();
-            if(privateKey){
+        // check if the private key has already been decrypted
+        if(EncryptionUtils.hasPrivateKey.get() === false){
+            // if not -> wait until it is and then render private
+            EncryptionUtils.waitForPrivateKey(function () {
                 // render private layout
                 BlazeLayout.render('privateLayout', {
                     top: 'homeToolbar',
                     main: 'home',
                     aside: 'menu'
                 });
-            }
-        });
+            });
+        } else {
+            // render private layout right away since
+            // the private key is already decrypted
+            BlazeLayout.render('privateLayout', {
+                top: 'homeToolbar',
+                main: 'home',
+                aside: 'menu'
+            });
+        }
     }
     return loggedIn;
   }
