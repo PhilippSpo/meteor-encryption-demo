@@ -18,7 +18,7 @@ Template.activeChats.helpers({
         return Template.instance().ready.get();
     },
     activeChats: function () {
-        return Chats.find();
+        return Chats.find().fetch();
     }
 });
 

@@ -46,6 +46,9 @@ Template.createChat.events({
         FlowRouter.go('/chat/:chatId', {
             chatId: chatId
         });
+    },
+    'click [data-action=addContacts]': function () {
+        Session.set("global.ui.dialogTemplate", "addContact");
     }
 });
 

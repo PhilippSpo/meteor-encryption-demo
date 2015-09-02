@@ -5,6 +5,15 @@
             {{#each contacts}}
                 {{>addContactToChatItem}}
             {{/each}}
+            {{#unless contacts}}
+                <div class="no-content">
+                    <div>
+                        <p>You have no friends yet.</p>
+                        <p>Click here to send out some friend requests.</p>
+                        <div class="btn waves-effect" data-action="addContacts">add friends</div>
+                    </div>
+                </div>
+            {{/unless}}
         {{else}}
             <div class="main-loading">
                 {{> loading size="small"}}
