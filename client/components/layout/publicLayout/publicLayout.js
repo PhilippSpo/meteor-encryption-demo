@@ -6,7 +6,7 @@ Template.publicLayout.helpers({
     var loggedIn = !!Meteor.user();
     if(loggedIn) {
         // check if the private key has already been decrypted
-        if(EncryptionUtils.hasPrivateKey.get() === false){
+        if(EncryptionUtils.hasPrivateKey() === false){
             // if not -> wait until it is and then render private
             EncryptionUtils.waitForPrivateKey(function () {
                 // render private layout

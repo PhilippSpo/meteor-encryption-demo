@@ -7,6 +7,6 @@ Template.privateMode.helpers({
     return canShow;
   },
   privateKey: function () {
-      return EncryptionUtils.hasPrivateKey.get();
+      return EncryptionUtils.hasPrivateKey();
   }
 });
