@@ -3,10 +3,12 @@
     <!-- new contacts can be added via the add contact button in the upper rigth corner -->
     <!-- friend requests are shown at the top in a separate list -->
     {{#if ready}}
-        {{#each friendRequests}}
+        {{#if friendRequests}}
             <div class="list-heading">Friend Requests</div>
-            {{>friendRequestItem}}
-        {{/each}}
+            {{#each friendRequests}}
+                {{>friendRequestItem}}
+            {{/each}}
+        {{/if}}
         {{#if contacts}}
             <div class="list-heading">Contacts</div>
             {{#each contacts}}

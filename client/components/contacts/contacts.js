@@ -31,7 +31,7 @@ Template.contacts.helpers({
                     $in: friendRequests
                 }
             });
-            return users;
+            return users.fetch();
         }
     },
     contacts: function () {
@@ -43,7 +43,7 @@ Template.contacts.helpers({
                     $in: contacts
                 }
             });
-            return users;
+            return users.fetch();
         }
     },
 });
