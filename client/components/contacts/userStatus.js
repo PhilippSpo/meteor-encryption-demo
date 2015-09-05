@@ -7,7 +7,9 @@ Template.userStatus.helpers({
           _id: FlowRouter.getParam('chatId')
       });
       if(!chat){
-          return;
+        return;
+      }else if(chat.partners.length > 2){
+        return;
       }
       var partners = _.filter(chat.partners, function(partner) {
           return partner !== Meteor.userId();
