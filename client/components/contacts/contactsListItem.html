@@ -2,6 +2,7 @@
     <div class="list-item with-divider">
         <div><img src="{{gravatar}}" class="circle"></div>
         <div>{{username}}</div>
+        <div>{{> userStatus}}</div>
         <div>
             <div id="removeContact" class="waves-effect btn-icon" data-open-dialog data-template="removeContact">
                 <i class="material-icons">{{#if icon}}{{icon}}{{else}}delete{{/if}}</i>
