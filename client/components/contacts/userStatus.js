@@ -1,9 +1,8 @@
-
 Template.userStatus.helpers({
   status: function () {
     var self = this;
     //for chat toolbar
-    if(!this.status){
+    if(!self.status){
       var chat = Chats.findOne({
           _id: FlowRouter.getParam('chatId')
       });
@@ -16,15 +15,19 @@ Template.userStatus.helpers({
       partners = _.map(partners, function (partnerId) {
           var user = Meteor.users.findOne({_id: partnerId});
           if(user){
-            self = user;
+            self =  user;
           }
       });
     }
-    
+
     if(self.status.online){
-      return "status-circle-online";
+      return "online";
     }else{
-      return "status-circle-offline";
+      return "offline";
     }
   }
 });
+
+Template.userStatus.rendered = function () {
+  $('.tooltipped').tooltip({delay: 50});
+};
