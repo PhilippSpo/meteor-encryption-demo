@@ -17,6 +17,11 @@ Template.createChat.onCreated(function () {
         // only in case of NEW friendRequests and contacts
         ContactsSubs.clear();
     });
+
+    analytics.track("Create Chat", {
+      eventName: "Create Chat",
+      couponValue: self.partners.length,
+    });
 });
 
 Template.createChat.helpers({

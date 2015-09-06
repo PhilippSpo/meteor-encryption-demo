@@ -27,6 +27,9 @@ Template.addContactItem.events({
             } else {
                 tmpl.requested.set(true);
                 Materialize.toast('Friend request was sent!', 4000);
+                analytics.track("Send Friend Request", {
+                  eventName: "Send Friend Request"
+                });
             }
         });
     }
