@@ -6,8 +6,5 @@ Template.removeContact.events({
             }
             GlobalUI.closeDialog();
         });
-        analytics.track("Remove Contact", {
-          eventName: "Remove Contact"
-        });
     }
 });

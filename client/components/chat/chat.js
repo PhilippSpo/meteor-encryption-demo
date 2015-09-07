@@ -81,10 +81,6 @@ var submitForm = function () {
     }
     // get the chat
     var chatId = FlowRouter.getParam('chatId');
-
-    analytics.track("Send Message", {
-      eventName: "Send Message"
-    });
     // send the message
     Messages.insert({
         // this will be validated by the server

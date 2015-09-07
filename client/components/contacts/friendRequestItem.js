@@ -15,18 +15,12 @@ Template.friendRequestItem.events({
                 Materialize.toast('Friendship accepted!');
             }
         });
-        analytics.track("Accept Friend Request", {
-          eventName: "Accept Friend Request"
-        });
     },
     'click #decline': function() {
         Meteor.call('declineFriendship', this._id, function(error, result){
             if(result) {
                 Materialize.toast('Friendship declined!');
             }
-        });
-        analytics.track("Decline Friend Request", {
-          eventName: "Decline Friend Request"
         });
     }
 });
