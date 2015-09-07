@@ -44,7 +44,6 @@ if (Meteor.isClient) {
             _.each(chat.partners, function (partnerId) {
                 if(partnerId !== Meteor.userId()) {
                     Meteor.subscribe('principals', partnerId, function () {
-                        console.log('share with '+partnerId);
                         MessagesEncryption.shareDocWithUser(doc._id, partnerId);
                     });
                 }

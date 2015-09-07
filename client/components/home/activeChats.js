@@ -18,7 +18,12 @@ Template.activeChats.helpers({
         return Template.instance().ready.get();
     },
     activeChats: function () {
-        return Chats.find().fetch();
+        var chats = Chats.find().fetch();
+        chats = _.filter(chats, function (chat) {
+            var chatMessagesCount = Messages.find({chatId: chat._id}).count();
+            return chatMessagesCount > 0;
+        });
+        return chats;
     }
 });
 
