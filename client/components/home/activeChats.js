@@ -10,8 +10,8 @@ Template.activeChats.onCreated(function () {
     self.autorun(function () {
         var chatHandle = ActiveChatsSubs.subscribe('chats');
         var usersHandle = ActiveChatUsersSubs.subscribe('activeChatUsers');
-        self.subscribe('principals');
-        self.ready.set(chatHandle.ready() && usersHandle.ready());
+        var principalsHandle = self.subscribe('principals');
+        self.ready.set(chatHandle.ready() && usersHandle.ready() && principalsHandle.ready());
     });
 });
 
