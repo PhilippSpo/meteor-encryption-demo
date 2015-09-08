@@ -1,15 +1,17 @@
 var ActiveChatsSubs = new SubsManager();
 var ActiveChatUsersSubs = new SubsManager();
+var ActiveChatMessagesSubs = new SubsManager();
+
 Template.activeChats.onCreated(function () {
     var self = this;
 
     // Subscription
     self.ready = new ReactiveVar();
     self.autorun(function () {
-        var handle = ActiveChatsSubs.subscribe('chats');
-        ActiveChatUsersSubs.subscribe('activeChatUsers');
+        var chatHandle = ActiveChatsSubs.subscribe('chats');
+        var usersHandle = ActiveChatUsersSubs.subscribe('activeChatUsers');
         self.subscribe('principals');
-        self.ready.set(handle.ready());
+        self.ready.set(chatHandle.ready() && usersHandle.ready());
     });
 });
 
@@ -19,10 +21,6 @@ Template.activeChats.helpers({
     },
     activeChats: function () {
         var chats = Chats.find().fetch();
-        chats = _.filter(chats, function (chat) {
-            var chatMessagesCount = Messages.find({chatId: chat._id}).count();
-            return chatMessagesCount > 0;
-        });
         return chats;
     }
 });
@@ -70,7 +68,7 @@ Template.activeChatsListItem.helpers({
         return partners.join(', ');
     },
     user: function () {
-        var userId = this.author;
+        var userId = this.author || this.partners[0];
         return Meteor.users.findOne({
             _id: userId
         });

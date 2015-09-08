@@ -44,6 +44,16 @@
                     </div>
                     <div></div>
                 {{/unless}}
+            {{else}}
+                <div><img src="{{#with user}}{{gravatar}}{{/with}}" class="circle"></div>
+                <div>
+                    <div>
+                        <div>{{chatPartners}}</div>
+                        <div class="truncate secondary">No messages yet</div>
+                    </div>
+                </div>
+                <div>
+                </div>
             {{/with}}
         {{else}}
             <div>
